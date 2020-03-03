@@ -19,7 +19,6 @@ exports.up = function(knex) {
 
         tbl
             .string('location', 255)
-            .notNullable()
     })
 };
 

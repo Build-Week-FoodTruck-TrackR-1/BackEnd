@@ -3,7 +3,8 @@ const db = require('../data/dbConfig');
 module.exports = {
     addDiner,
     findDinerBy,
-    findDinerById
+    findDinerById,
+    findAllDiners
 }
 
 function addDiner(diner) {
@@ -25,4 +26,9 @@ function findDinerById(id) {
         .select('id', 'username', 'password', 'location')
         .where({ id })
         .first()
+}
+
+function findAllDiners() {
+    return db('diners as d')
+        .select('d.id', 'd.username', 'd.email', 'd.password', 'd.location')
 }

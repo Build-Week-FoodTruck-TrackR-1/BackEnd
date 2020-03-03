@@ -8,6 +8,9 @@ const restricted = require('../auth/auth-middleware');
 
 const authRouter = require('../auth/auth-router');
 const operatorRouter = require('../operators/operators-router');
+const dinerRouter = require('../diners/diners-router');
+const truckRouter = require('../trucks/trucks-router');
+const accountRouter = require('../accounts/accounts-router');
 
 const server = express();
 
@@ -50,6 +53,9 @@ server.get('/', (req, res) => {
 })
 
 server.use('/api/auth', authRouter);
-server.use('/api/operators', restricted, operatorRouter)
+server.use('/api/operator', restricted, operatorRouter)
+server.use('/api/trucks', restricted, truckRouter);
+server.use('/api/diners', restricted, dinerRouter);
+server.use('/api/accounts', accountRouter);
 
 module.exports = server;

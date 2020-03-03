@@ -1,33 +1,12 @@
 const db = require('../data/dbConfig');
 
 module.exports = {
-    addOperator,
-    findOperatorBy,
-    findOperatorById,
     addTruck,
+    editTruck,
+    deleteTruck,
+    getAllTrucks,
     findTruckById,
     getTrucksByOperator
-}
-
-function addOperator(operator) {
-    return db('operators')
-        .insert(operator, 'id')
-        .then(ids => {
-            const [id] = ids;
-            return findOperatorById(id);
-        })
-}
-
-function findOperatorBy(filter) {
-    return db('operators')
-        .where(filter)
-}
-
-function findOperatorById(id) {
-    return db('operators')
-        .select('id', 'username', 'email', 'password')
-        .where({ id })
-        .first()
 }
 
 function addTruck(truck) {
@@ -37,6 +16,18 @@ function addTruck(truck) {
             const [id] = ids;
             return findTruckById(id);
         })
+}
+
+function editTruck(changes, id) {
+    return db('trucks')
+        .where({ id })
+        .update(changes)
+}
+
+function deleteTruck(id) {
+    return db('trucks')
+        .where({ id })
+        .del()
 }
 
 function findTruckById(id) {
@@ -51,4 +42,9 @@ function getTrucksByOperator(id) {
     .select('trucks.id', 'trucks.name', 'trucks.image', 'trucks.cuisine_type')
     .join('operators', 'operators.id', 'trucks.operator_id')
     .where('operators.id', id)
+}
+
+function getAllTrucks() {
+    return db('trucks as t')
+        .select('t.name', 't.image', 't.cuisine_type')
 }

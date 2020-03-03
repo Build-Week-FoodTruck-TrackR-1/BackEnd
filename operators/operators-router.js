@@ -96,7 +96,7 @@ router.delete('/:operatorId/truck/:truckId', (req, res) => {
 })
 
 // how operators add menu item
-router.post('/:operatorId/truck/:truckId/addToMenu', (req, res) => {
+router.post('/:operatorId/truck/:truckId/items', (req, res) => {
     const { operatorId, truckId } = req.params;
     let newItem = req.body;
     newItem.truck_id = truckId;
@@ -112,7 +112,7 @@ router.post('/:operatorId/truck/:truckId/addToMenu', (req, res) => {
 })
 
 // how operators edit menu item
-router.put('/:operatorId/truck/:truckId/editMenu/:itemId', (req, res) => {
+router.put('/:operatorId/truck/:truckId/item/:itemId', (req, res) => {
     const { operatorId, truckId, itemId } = req.params;
     let updatedItem = req.body;
     updatedItem.truck_id = truckId;

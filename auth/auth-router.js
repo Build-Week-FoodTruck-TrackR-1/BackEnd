@@ -3,8 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const operators = require('./operators-model');
-const diners = require('./diners-model');
+const operators = require('../operators/operators-model');
+const diners = require('../diners/diners-model');
 
 // registration for operators
 router.post('/register/operators', (req, res) => {
@@ -105,7 +105,7 @@ function generateToken(user) {
     const secret = process.env.JWT_SECRET || 'top secret';
 
     const options = {
-        expiresIn: '30m'
+        expiresIn: '1h'
     }
 
     return jwt.sign(payload, secret, options);

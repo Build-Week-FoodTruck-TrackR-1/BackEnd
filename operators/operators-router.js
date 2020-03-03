@@ -1,21 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const operators = require('../auth/operators-model');
+const operators = require('./operators-model');
+const trucks = require('../trucks/trucks-model');
+const menu = require('../menu-items/menu-items-model');
 
-router.post('/addTruck', (req, res) => {
-    let newTruck = req.body;
-
-    operators.addTruck(newTruck)
-        .then(added => {
-            res.status(201).json(added);
-        })
-        .catch(error => {
-            console.log(error);
-            res.status(500).json({ errorMessage: 'unable to add truck' });
-        }) 
-})
-
+// how operators get operator info by id
 router.get('/:id', (req, res) => {
     const { id } = req.params;
     console.log(id);
@@ -25,7 +15,7 @@ router.get('/:id', (req, res) => {
             if (operator) {
                 const updatedOperator = {
                     ...operator, 
-                    trucks: operators.getTrucksByOperator(id)
+                    trucks: []
                 };
                 res.status(200).json(updatedOperator);
             } else {
@@ -38,10 +28,27 @@ router.get('/:id', (req, res) => {
         })
 })
 
-router.get('/:id/trucks', (req, res) => {
+// how operators add new truck
+router.post('/:id/trucks', (req, res) => {
     const { id } = req.params;
+    let newTruck = req.body;
+    newTruck.operator_id = id;
 
-    operators.getTrucksByOperator(id)
+    trucks.addTruck(newTruck)
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ errorMessage: 'unable to add truck' });
+        }) 
+})
+
+// how operators get truck by their operator id
+router.get('/:operatorId/trucks', (req, res) => {
+    const { operatorId } = req.params;
+
+    trucks.getTrucksByOperator(operatorId)
         .then(trucks => {
             if(trucks) {
                 res.status(200).json(trucks);
@@ -52,6 +59,86 @@ router.get('/:id/trucks', (req, res) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to retrieve operator' });
+        })
+})
+
+
+// how operators edit truck
+router.put('/:operatorId/truck/:truckId', (req, res) => {
+    console.log('this is running');
+    const { operatorId, truckId } = req.params;
+    let updatedTruck = req.body;
+    updatedTruck.operator_id = operatorId;
+    updatedTruck.id = truckId;
+
+    trucks.editTruck(updatedTruck, truckId)
+        .then(updated => {
+            res.status(200).json(updated);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ errorMessage: 'unable to update truck' });
+        })
+})
+
+// how operators delete truck
+router.delete('/:operatorId/truck/:truckId', (req, res) => {
+    const { operatorId, truckId } = req.params;
+
+    trucks.deleteTruck(truckId)
+        .then(deleted => {
+            res.status(200).json(deleted);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ errorMessage: 'unable to delete truck' });
+        })
+})
+
+// how operators add menu item
+router.post('/:operatorId/truck/:truckId/addToMenu', (req, res) => {
+    const { operatorId, truckId } = req.params;
+    let newItem = req.body;
+    newItem.truck_id = truckId;
+
+    menu.addMenuItem(newItem)
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ errorMessage: 'unable to add item to menu' });
+        })
+})
+
+// how operators edit menu item
+router.put('/:operatorId/truck/:truckId/editMenu/:itemId', (req, res) => {
+    const { operatorId, truckId, itemId } = req.params;
+    let updatedItem = req.body;
+    updatedItem.truck_id = truckId;
+    updatedItem.id = itemId;
+
+    menu.editMenuItem(updatedItem, itemId)
+        .then(updated => {
+            res.status(200).json(updated);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ errorMessage: 'unable to update item' });
+        })
+})
+
+// how operators delete menu item
+router.delete('/:operatorId/truck/:truckId/deleteItem/:itemId', (req, res) => {
+    const { operatorId, truckId, itemId } = req.params;
+
+    menu.deleteMenuItem(itemId)
+        .then(deleted => {
+            res.status(200).json(deleted);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ errorMessage: 'unable to remove item from menu' });
         })
 })
 

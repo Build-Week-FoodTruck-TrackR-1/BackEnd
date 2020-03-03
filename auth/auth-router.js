@@ -15,7 +15,7 @@ router.post('/register/operators', (req, res) => {
 
     operators.addOperator(operator)
         .then(added => {
-            req.session.loggedIn = true;
+            // req.session.loggedIn = true;
             res.status(201).json(added);
         })
         .catch(error => {
@@ -33,7 +33,7 @@ router.post('/register/diners', (req, res) => {
 
     diners.addDiner(diner)
         .then(added => {
-            req.session.loggedIn = true;
+            // req.session.loggedIn = true;
             res.status(201).json(added);
         })
         .catch(error => {
@@ -52,13 +52,13 @@ router.post('/login/operators', (req, res) => {
         .then(operator => {
             console.log('operator: ' + operator);
             if(operator && bcrypt.compareSync(password, operator.password)) {
-                // const token = generateToken(operator);
-                req.session.loggedIn = true;
-                req.session.username = operator.username;
+                const token = generateToken(operator);
+                // req.session.loggedIn = true;
+                // req.session.username = operator.username;
 
                 res.status(200).json({
                     message: `Welcome ${operator.username}`,
-                    // token
+                    token
                 })
             } else {
                 res.status(401).json({ error: 'Invalid credentials' });
@@ -78,13 +78,13 @@ router.post('/login/diners', (req, res) => {
         .first()
         .then(diner => {
             if(diner && bcrypt.compareSync(password, diner.password)) {
-                // 
-                req.session.loggedIn = true;
-                req.session.username = diner.username;
+                const token = generateToken(diner);
+                // req.session.loggedIn = true;
+                // req.session.username = diner.username;
 
                 res.status(200).json({
                     message: `Welcome ${diner.username}`,
-                    // token
+                    token
                 })
             } else {
                 res.status(401).json({ error: 'Invalid credentials' });
@@ -97,18 +97,18 @@ router.post('/login/diners', (req, res) => {
 })
 
 // token generation
-// function generateToken(user) {
-//     const payload = {
-//         username: user.username
-//     }
+function generateToken(user) {
+    const payload = {
+        username: user.username
+    }
 
-//     const secret = process.env.JWT_SECRET || 'top secret';
+    const secret = process.env.JWT_SECRET || 'top secret';
 
-//     const options = {
-//         expiresIn: '30m'
-//     }
+    const options = {
+        expiresIn: '30m'
+    }
 
-//     return jwt.sign(payload, secret, options);
-// }
+    return jwt.sign(payload, secret, options);
+}
 
 module.exports = router;

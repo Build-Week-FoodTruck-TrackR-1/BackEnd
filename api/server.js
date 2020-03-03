@@ -55,7 +55,7 @@ server.get('/', (req, res) => {
 server.use('/api/auth', authRouter);
 server.use('/api/operator', restricted, operatorRouter)
 server.use('/api/trucks', restricted, truckRouter);
-server.use('/api/diners', restricted, dinerRouter);
+server.use('/api/diner', restricted, dinerRouter);
 server.use('/api/accounts', accountRouter);
 
 module.exports = server;

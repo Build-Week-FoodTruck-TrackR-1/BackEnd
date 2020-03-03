@@ -4,7 +4,9 @@ module.exports = {
     addDiner,
     findDinerBy,
     findDinerById,
-    findAllDiners
+    findAllDiners,
+    editDiner,
+    deleteDiner
 }
 
 function addDiner(diner) {
@@ -31,4 +33,16 @@ function findDinerById(id) {
 function findAllDiners() {
     return db('diners as d')
         .select('d.id', 'd.username', 'd.email', 'd.password', 'd.location')
+}
+
+function editDiner(changes, id) {
+    return db('diners')
+        .where({ id })
+        .update(changes)
+}
+
+function deleteDiner(id) {
+    return db('diners')
+        .where({ id })
+        .del()
 }

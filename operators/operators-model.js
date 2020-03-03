@@ -4,7 +4,9 @@ module.exports = {
     addOperator,
     findOperatorBy,
     findOperatorById,
-    findAllOperators
+    findAllOperators,
+    editOperator,
+    deleteOperator
     // addTruck,
     // findTruckById,
     // getTrucksByOperator
@@ -34,6 +36,18 @@ function findOperatorById(id) {
 function findAllOperators() {
     return db('operators as o')
         .select('o.id', 'o.username', 'o.email', 'o.password')
+}
+
+function editOperator(changes, id) {
+    return db('operators')
+        .where({ id })
+        .update(changes)
+}
+
+function deleteOperator(id) {
+    return db('operators')
+        .where({ id })
+        .del()
 }
 
 // function addTruck(truck) {

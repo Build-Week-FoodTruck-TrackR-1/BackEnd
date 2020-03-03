@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 const operators = require('./operators-model');
 const trucks = require('../trucks/trucks-model');
 const menu = require('../menu-items/menu-items-model');
 
-// how operators get operator info by id
+// how operators get account info 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
     console.log(id);
@@ -25,6 +26,38 @@ router.get('/:id', (req, res) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to retrieve operator' });
+        })
+})
+
+// how operators edit account
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    let updatedOp = req.body;
+    updatedOp.id = id;
+    const hash = bcrypt.hashSync(updatedOp.password, 8);
+    updatedOp.password = hash;
+
+    operators.editOperator(updatedOp, id)
+        .then(updated => {
+            res.status(200).json(updated);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to update account' });
+        })
+})
+
+// how operators delete account
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+
+    operators.deleteOperator(id)
+        .then(deleted => {
+            res.status(200).json(deleted);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to delete account' });
         })
 })
 

@@ -107,7 +107,7 @@ function generateToken(user) {
     const secret = process.env.JWT_SECRET || 'top secret';
 
     const options = {
-        expiresIn: '1h'
+        expiresIn: '24h'
     }
 
     return jwt.sign(payload, secret, options);

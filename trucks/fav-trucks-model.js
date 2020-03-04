@@ -1,7 +1,8 @@
 const db = require('../data/dbConfig');
 
 module.exports = {
-    addToFavs
+    addToFavs,
+    findFavById
 }
 
 function addToFavs(fav) {
@@ -16,7 +17,7 @@ function addToFavs(fav) {
 function findFavById(id) {
     return db('fav_trucks as ft')
     .join('trucks as t', 't.id', 'ft.truck_id')
-    .where({ id })
+    .where({ 'ft.id': id  })
     .select('ft.truck_id', 't.name')
     .first()
 }

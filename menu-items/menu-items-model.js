@@ -28,6 +28,9 @@ function editMenuItem(changes, id) {
     return db('menu_items')
         .where({ id })
         .update(changes)
+        .then(id => {
+            return findMenuItemById(id);
+        })
 }
 
 function deleteMenuItem(id) {

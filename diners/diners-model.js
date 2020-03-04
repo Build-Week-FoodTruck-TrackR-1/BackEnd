@@ -39,6 +39,9 @@ function editDiner(changes, id) {
     return db('diners')
         .where({ id })
         .update(changes)
+        .then(id => {
+            return findDinerById(id);
+        })
 }
 
 function deleteDiner(id) {

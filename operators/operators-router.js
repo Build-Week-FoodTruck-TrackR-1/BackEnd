@@ -9,14 +9,21 @@ const menu = require('../menu-items/menu-items-model');
 // how operators get account info 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
-    console.log(id);
+
+    let trucksArr;
+
+    trucks.getTrucksByOperator(id)
+        .then(t => {
+            trucksArr = t;
+        })
+
     operators.findOperatorById(id)
         .then(operator => {
             console.log(operator)
             if (operator) {
                 const updatedOperator = {
                     ...operator, 
-                    trucks: []
+                    trucks: trucksArr
                 };
                 res.status(200).json(updatedOperator);
             } else {

@@ -74,6 +74,10 @@ exports.up = function(knex) {
         .onUpdate('CASCADE')
 
       tbl
+        .integer('star_rating')
+        .notNullable()
+
+      tbl
         .string('review', 500)
         .notNullable()
     })
@@ -83,4 +87,5 @@ exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists('truck_ratings')
     .dropTableIfExists('fav_trucks')
+    .dropTableIfExists('truck_reviews')
 };

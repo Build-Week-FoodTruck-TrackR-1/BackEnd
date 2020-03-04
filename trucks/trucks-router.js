@@ -1,3 +1,5 @@
+// endpoints for: /api/trucks
+
 const express = require('express');
 const router = express.Router();
 
@@ -37,5 +39,23 @@ router.get('/', (req, res) => {
             res.status(500).json({ errorMessage: 'unable to retrieve trucks' });
         })
 })
+
+// // how diner leaves review of truck
+// router.post('/:truckId/reviews', (req, res) => {
+//     const { truckId } = req.params;
+//     let newReview = req.body;
+//     newReview.truck_id = truckId;
+
+//     trucks.addTruckReview(newReview)
+//         .then(review => {
+//             res.status(201).json(review);
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json({ errorMessage: 'unable to add review' });
+//         })
+// })
+
+
 
 module.exports = router;

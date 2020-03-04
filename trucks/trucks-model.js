@@ -35,7 +35,7 @@ function deleteTruck(id) {
 
 function findTruckById(id) {
     return db('trucks')
-    .select('id', 'name', 'image', 'operator_id', 'cuisine_type')
+    .select('id', 'name', 'image', 'operator_id', 'cuisine_type', 'physical_address')
     .where({ id })
     .first()
 }
@@ -49,5 +49,5 @@ function getTrucksByOperator(id) {
 
 function getAllTrucks() {
     return db('trucks as t')
-        .select('t.name', 't.image', 't.cuisine_type')
+        .select('*')
 }

@@ -40,22 +40,33 @@ router.get('/', (req, res) => {
         })
 })
 
-// // how diner leaves review of truck
-// router.post('/:truckId/reviews', (req, res) => {
-//     const { truckId } = req.params;
-//     let newReview = req.body;
-//     newReview.truck_id = truckId;
+// how diner leaves review of truck
+router.post('/:truckId/reviews', (req, res) => {
+    const { truckId } = req.params;
+    let newReview = req.body;
+    newReview.truck_id = truckId;
 
-//     trucks.addTruckReview(newReview)
-//         .then(review => {
-//             res.status(201).json(review);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json({ errorMessage: 'unable to add review' });
-//         })
-// })
+    trucks.addTruckReview(newReview)
+        .then(review => {
+            res.status(201).json(review);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to add review' });
+        })
+})
 
+router.get('/:truckId/reviews', (req, res) => {
+    const { truckId } = req.params;
 
+    trucks.getReviewsByTruck(truckId)
+        .then(reviews => {
+            res.status(200).json(reviews);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'An error occurred while loading reviews' });
+        })
+})
 
 module.exports = router;

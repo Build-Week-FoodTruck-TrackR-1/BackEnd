@@ -7,8 +7,9 @@ module.exports = {
     getAllTrucks,
     findTruckById,
     getTrucksByOperator,
-    // addTruckReview,
-    // findReviewById
+    addTruckReview,
+    findReviewById,
+    getReviewsByTruck
 }
 
 function addTruck(truck) {
@@ -54,23 +55,26 @@ function getAllTrucks() {
         .select('*')
 }
 
-// function addTruckReview(review) {
-//     return db('truck_reviews')
-//         .insert(review, 'id')
-//         .then(ids => {
-//             const [id] = ids;
-//             return findReviewById(id);
-//         })
-// }
+function addTruckReview(review) {
+    return db('truck_reviews')
+        .insert(review, 'id')
+        .then(ids => {
+            const [id] = ids;
+            return findReviewById(id);
+        })
+}
 
-// function findReviewById(id) {
-//     return db('truck_reviews')
-//     .select('*')
-//     .where({ id })
-//     .first()
-// }
+function findReviewById(id) {
+    return db('truck_reviews')
+    .select('*')
+    .where({ id })
+    .first()
+}
 
-// function GetReviewsByTruck(truckId) {
-//     return db('truck_reviews as tr')
-//         .select('d.username', '')
-// }
+function getReviewsByTruck(truckId) {
+    return db('truck_reviews as tr')
+        .select('d.username', 'tr.star_rating', 'tr.review')
+        .join('diners as d', 'd.id', 'tr.diner_id')
+        .where('tr.truck_id', truckId)
+}
+

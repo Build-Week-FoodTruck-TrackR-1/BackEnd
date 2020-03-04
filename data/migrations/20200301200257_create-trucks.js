@@ -22,6 +22,8 @@ exports.up = function(knex) {
         tbl
             .string('cuisine_type', 255)
             .notNullable()
+
+        tbl.string('physical_address', 255)
     })
 };
 

@@ -58,6 +58,7 @@ router.post('/login/operators', (req, res) => {
 
                 res.status(200).json({
                     message: `Welcome ${operator.username}`,
+                    id: operator.id,
                     token
                 })
             } else {
@@ -84,6 +85,7 @@ router.post('/login/diners', (req, res) => {
 
                 res.status(200).json({
                     message: `Welcome ${diner.username}`,
+                    id: diner.id,
                     token
                 })
             } else {

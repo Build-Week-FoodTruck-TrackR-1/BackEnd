@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const diners = require('./diners-model');
 const trucks = require('../trucks/trucks-model');
+const favorites = require('../trucks/fav-trucks-model');
 
 // how diners get account info
 router.get('/:id', (req, res) => {
@@ -56,6 +57,24 @@ router.delete('/:id', (req, res) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to delete account' });
+        })
+})
+
+// how diners add favorite truck
+router.post('/:dinerId/fav/:truckId', (req, res) => {
+    const { dinerId, truckId } = req.params;
+    let newFav = req.body;
+    newFav.diner_id = dinerId;
+    newFav.truck_id = truckId;
+
+    favorites.addToFavs(newFav)
+        .then(added => {
+            console.log(`id being generated: ${newFav.id}`)
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to add to favorites' });
         })
 })
 

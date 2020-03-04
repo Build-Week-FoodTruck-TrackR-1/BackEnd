@@ -31,6 +31,8 @@ exports.up = function(knex) {
 
     // diners' favorite trucks table 
     .createTable('fav_trucks', tbl => {
+      tbl.increments()
+
       tbl
         .integer('diner_id')
         .unsigned()
@@ -48,8 +50,6 @@ exports.up = function(knex) {
         .inTable('trucks')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
-
-      tbl.primary(['diner_id', 'truck_id'])
     })
 };
 

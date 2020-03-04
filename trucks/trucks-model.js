@@ -22,6 +22,9 @@ function editTruck(changes, id) {
     return db('trucks')
         .where({ id })
         .update(changes)
+        .then(id => {
+            return findTruckById(id);
+        })
 }
 
 function deleteTruck(id) {

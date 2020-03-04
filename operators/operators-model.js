@@ -42,6 +42,9 @@ function editOperator(changes, id) {
     return db('operators')
         .where({ id })
         .update(changes)
+        .then(id => {
+            return findOperatorById(id);
+        })
 }
 
 function deleteOperator(id) {

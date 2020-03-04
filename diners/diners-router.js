@@ -69,7 +69,7 @@ router.post('/:dinerId/fav/:truckId', (req, res) => {
 
     favorites.addToFavs(newFav)
         .then(added => {
-            console.log(`id being generated: ${newFav.id}`)
+            // console.log(`id being generated: ${newFav.id}`)
             res.status(201).json(added);
         })
         .catch(err => {

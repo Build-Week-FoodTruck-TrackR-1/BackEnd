@@ -6,7 +6,9 @@ module.exports = {
     deleteTruck,
     getAllTrucks,
     findTruckById,
-    getTrucksByOperator
+    getTrucksByOperator,
+    // addTruckReview,
+    // findReviewById
 }
 
 function addTruck(truck) {
@@ -51,3 +53,24 @@ function getAllTrucks() {
     return db('trucks as t')
         .select('*')
 }
+
+// function addTruckReview(review) {
+//     return db('truck_reviews')
+//         .insert(review, 'id')
+//         .then(ids => {
+//             const [id] = ids;
+//             return findReviewById(id);
+//         })
+// }
+
+// function findReviewById(id) {
+//     return db('truck_reviews')
+//     .select('*')
+//     .where({ id })
+//     .first()
+// }
+
+// function GetReviewsByTruck(truckId) {
+//     return db('truck_reviews as tr')
+//         .select('d.username', '')
+// }

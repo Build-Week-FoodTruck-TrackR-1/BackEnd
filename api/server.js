@@ -40,6 +40,8 @@ const corsOptions = {
     credentials: true
 }
 
+server.use(cors(corsOptions));
+
 server.get("/hash", (req, res) => {
     const authentification = req.headers.authentification;
 
@@ -56,7 +58,6 @@ server.get('/', (req, res) => {
 server.use(helmet());
 server.use(express.json());
 server.use(session(sessionConfig));
-server.use(cors(corsOptions));
 
 server.use('/api/auth', authRouter);
 server.use('/api/operator', restricted, operatorRouter)

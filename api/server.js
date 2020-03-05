@@ -34,7 +34,8 @@ const sessionConfig = {
 }
 const corsOptions = {
     origin: [
-      'http://localhost:3000'
+      'http://localhost:3000',
+      'https://confident-volhard-97d9a3.netlify.com/'
     ],
     credentials: true
 }

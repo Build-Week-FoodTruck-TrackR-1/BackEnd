@@ -40,7 +40,7 @@ function editDiner(changes, id) {
         .where({ id })
         .update(changes)
         .then(id => {
-            return findDinerById(id);
+            return findDinerById(id)
         })
 }
 

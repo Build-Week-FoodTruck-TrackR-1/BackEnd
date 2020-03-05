@@ -1,3 +1,5 @@
+// endpoints for: /api/operator
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -32,7 +34,7 @@ router.get('/:id', (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ errorMessage: 'unable to retrieve operator' });
+            res.status(500).json({ errorMessage: 'An error occurred while retrieving the account' });
         })
 })
 
@@ -135,7 +137,7 @@ router.delete('/:operatorId/truck/:truckId', (req, res) => {
         })
 })
 
-// how operators add menu item
+// how operators add menu item 
 router.post('/:operatorId/truck/:truckId/items', (req, res) => {
     const { operatorId, truckId } = req.params;
     let newItem = req.body;

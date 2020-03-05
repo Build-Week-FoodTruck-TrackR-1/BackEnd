@@ -44,7 +44,7 @@ router.put('/:id', (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ errorMessage: 'unable to delete account' });
+            res.status(500).json({ errorMessage: 'An error occured while updating account' });
         })
 })
 

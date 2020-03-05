@@ -14,10 +14,6 @@ const accountRouter = require('../accounts/accounts-router');
 
 const server = express();
 
-server.use(cors());
-server.use(helmet());
-server.use(express.json());
-
 const sessionConfig = {
     name: 'test',
     secret: 'if I tell you, I have to kill you',
@@ -36,8 +32,12 @@ const sessionConfig = {
         clearInterval: 1000 * 60 * 15
     })
 }
-
-server.use(session(sessionConfig));
+const corsOptions = {
+    origin: [
+      'http://localhost:3000'
+    ],
+    credentials: true
+}
 
 server.get("/hash", (req, res) => {
     const authentification = req.headers.authentification;
@@ -51,6 +51,11 @@ server.get('/', (req, res) => {
     console.log(req.sesson);
     res.status(200).json({ api: 'up' });
 })
+
+server.use(helmet());
+server.use(express.json());
+server.use(session(sessionConfig));
+server.use(cors(corsOptions));
 
 server.use('/api/auth', authRouter);
 server.use('/api/operator', restricted, operatorRouter)

@@ -1,9 +1,12 @@
+// endpoints for: /api/accounts
+
 const express = require('express');
 const router = express.Router();
 
 const operators = require('../operators/operators-model');
 const diners = require('../diners/diners-model');
 
+// how to get accounts for all operators
 router.get('/operators', (req, res) => {
     operators.findAllOperators()
         .then(all => {
@@ -15,6 +18,7 @@ router.get('/operators', (req, res) => {
         })
 })
 
+// how to get accounts for all diners
 router.get('/diners', (req, res) => {
     diners.findAllDiners()
     .then(all => {

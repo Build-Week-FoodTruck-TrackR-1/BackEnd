@@ -56,6 +56,7 @@ router.post('/:truckId/reviews', (req, res) => {
         })
 })
 
+// how diner gets listing of reviews for truck
 router.get('/:truckId/reviews', (req, res) => {
     const { truckId } = req.params;
 

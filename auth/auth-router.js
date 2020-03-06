@@ -15,15 +15,19 @@ router.post('/register/operators', (req, res) => {
     const hash = bcrypt.hashSync(operator.password, 8);
     operator.password = hash;
 
-    operators.addOperator(operator)
-        .then(added => {
-            // req.session.loggedIn = true;
-            res.status(201).json(added);
-        })
-        .catch(error => {
-            console.log(error);
-            res.status(500).json({ errorMessage: 'unable to register operator' });
-          }) 
+    if (!operator.username || !operator.email || !operator.password) {
+        res.status(400).json({ error: 'Please enter username, email and password' })
+    } else {
+        operators.addOperator(operator)
+            .then(added => {
+                // req.session.loggedIn = true;
+                res.status(201).json(added);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).json({ errorMessage: 'unable to register operator' });
+            })
+    }
 })
 
 // registration for diners
@@ -33,15 +37,19 @@ router.post('/register/diners', (req, res) => {
     const hash = bcrypt.hashSync(diner.password, 8);
     diner.password = hash;
 
-    diners.addDiner(diner)
-        .then(added => {
-            // req.session.loggedIn = true;
-            res.status(201).json(added);
-        })
-        .catch(error => {
-            console.log(error);
-            res.status(500).json({ errorMessage: 'unable to register diner' });
-        })
+    if (!diner.username || !diner.email || !diner.password) {
+        res.status(400).json({ error: 'Please enter username, email and password'})
+    } else {
+        diners.addDiner(diner)
+            .then(added => {
+                // req.session.loggedIn = true;
+                res.status(201).json(added);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).json({ errorMessage: 'unable to register diner' });
+            })
+    }
 })      
 
 // login for operators
@@ -49,28 +57,30 @@ router.post('/login/operators', (req, res) => {
     let { username, password } = req.body;
     console.log(req.body);
 
-    operators.findOperatorBy({ username })
-        .first()
-        .then(operator => {
-            console.log('operator: ' + operator);
-            if(operator && bcrypt.compareSync(password, operator.password)) {
-                const token = generateToken(operator);
-                // req.session.loggedIn = true;
-                // req.session.username = operator.username;
+    if (!username || !password) {
+        res.status(400).json({ error: 'Please enter username and password' });
+    } else {
+        operators.findOperatorBy({ username })
+            .first()
+            .then(operator => {
+                console.log('operator: ' + operator);
+                if(operator && bcrypt.compareSync(password, operator.password)) {
+                    const token = generateToken(operator);
 
-                res.status(200).json({
-                    message: `Welcome ${operator.username}`,
-                    id: operator.id,
-                    token
-                })
-            } else {
-                res.status(401).json({ error: 'Invalid credentials' });
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            res.status(500).json({ errorMessage: 'unable to login' });
-        })
+                    res.status(200).json({
+                        message: `Welcome ${operator.username}`,
+                        id: operator.id,
+                        token
+                    })
+                } else {
+                    res.status(401).json({ error: 'Invalid credentials' });
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).json({ errorMessage: 'unable to login' });
+            })
+    }
 })
 
 //login for diners

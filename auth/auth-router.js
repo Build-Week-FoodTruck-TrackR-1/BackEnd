@@ -21,6 +21,7 @@ router.post('/register/operators', (req, res) => {
         operators.addOperator(operator)
             .then(added => {
                 // req.session.loggedIn = true;
+                // const token = generateToken(added);
                 res.status(201).json(added);
             })
             .catch(error => {
@@ -42,6 +43,7 @@ router.post('/register/diners', (req, res) => {
     } else {
         diners.addDiner(diner)
             .then(added => {
+                // const token = generateToken(added);
                 // req.session.loggedIn = true;
                 res.status(201).json(added);
             })
@@ -69,7 +71,11 @@ router.post('/login/operators', (req, res) => {
 
                     res.status(200).json({
                         message: `Welcome ${operator.username}`,
-                        id: operator.id,
+                        account: {
+                            id: operator.id,
+                            username: operator.username,
+                            email: operator.email
+                        },
                         token
                     })
                 } else {

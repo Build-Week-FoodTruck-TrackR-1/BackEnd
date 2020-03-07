@@ -25,7 +25,7 @@ function editTruck(changes, id) {
     return db('trucks')
         .where({ id })
         .update(changes)
-        .then(id => {
+        .then(() => {
             return findTruckById(id);
         })
 }

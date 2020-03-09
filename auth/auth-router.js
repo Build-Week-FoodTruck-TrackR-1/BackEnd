@@ -103,7 +103,12 @@ router.post('/login/diners', (req, res) => {
 
                 res.status(200).json({
                     message: `Welcome ${diner.username}`,
-                    id: diner.id,
+                    account: {
+                        id: diner.id,
+                        username: diner.username,
+                        email: diner.email,
+                        location: diner.location
+                    },
                     token
                 })
             } else {

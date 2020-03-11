@@ -80,4 +80,19 @@ router.post('/:dinerId/fav/:truckId', (req, res) => {
         })
 })
 
+// how diners change location
+router.patch('/:id', (req, res) => {
+    const { id } = req.params;
+    let updatedlocation = req.body;
+
+    diners.editDinerLocation(updatedlocation, id)
+        .then(updated => {
+            res.status(200).json(updated);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'An error occurred while updating location. Please try again.' });
+        })
+})
+
 module.exports = router;

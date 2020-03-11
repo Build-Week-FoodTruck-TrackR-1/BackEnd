@@ -107,6 +107,7 @@ router.post('/login/diners', (req, res) => {
                         id: diner.id,
                         username: diner.username,
                         email: diner.email,
+                        password: diner.password,
                         location: diner.location
                     },
                     token

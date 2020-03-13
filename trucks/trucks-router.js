@@ -70,4 +70,33 @@ router.get('/:truckId/reviews', (req, res) => {
         })
 })
 
+// how to get truck by id (diner or operator)
+router.get('/:truckId', (req, res) => {
+    const { truckId } = req.params;
+
+    let reviewArr;
+
+    trucks.getReviewsByTruck(truckId)
+        .then(r => {
+            reviewArr = r;
+        })
+
+    trucks.findTruckById(truckId)
+        .then(truck => {
+            if (truck) {
+                const updatedTruck = {
+                    ...truck,
+                    reviews: reviewArr
+                };
+                res.status(200).json(updatedTruck);
+            } else {
+                res.status(404).json({ error: 'Could not find truck with the specified id' });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'An error occurred while loading truck. Please try again' });
+        })
+})
+
 module.exports = router;

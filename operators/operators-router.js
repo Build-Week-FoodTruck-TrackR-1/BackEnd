@@ -86,7 +86,7 @@ router.post('/:id/trucks', (req, res) => {
         }) 
 })
 
-// how operators get truck by their operator id
+// how operators get trucks by their operator id
 router.get('/:operatorId/trucks', (req, res) => {
     const { operatorId } = req.params;
 
@@ -103,7 +103,6 @@ router.get('/:operatorId/trucks', (req, res) => {
             res.status(500).json({ errorMessage: 'unable to retrieve operator' });
         })
 })
-
 
 // how operators edit truck
 router.put('/:operatorId/truck/:truckId', (req, res) => {

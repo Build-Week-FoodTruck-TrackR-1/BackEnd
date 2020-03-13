@@ -12,12 +12,19 @@ const favorites = require('../trucks/fav-trucks-model');
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
+    let favsArr;
+
+    favorites.findFavsByDiner(id)
+        .then(f => {
+            favsArr = f;
+        })
+
     diners.findDinerById(id)
         .then(diner => {
             if (diner) {
                 const updatedDiner = {
                     ...diner,
-                    favTrucks: []
+                    favTrucks: favsArr
                 };
                 res.status(200).json(updatedDiner);
             } else {
@@ -92,6 +99,20 @@ router.patch('/:id', (req, res) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({ errorMessage: 'An error occurred while updating location. Please try again.' });
+        })
+})
+
+// how diners get favorite trucks
+router.get('/:id/favorites', (req, res) => {
+    const { id } = req.params;
+
+    favorites.findFavsByDiner(id)
+        .then(trucks => {
+            res.status(200).json(trucks);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'An error occurred while retrieving trucks. Please try again.' });
         })
 })
 

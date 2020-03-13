@@ -3,7 +3,8 @@ const db = require('../data/dbConfig');
 module.exports = {
     addToFavs,
     findFavById,
-    findFavsByDiner
+    findFavsByDiner,
+    findFavsBy
 }
 
 function addToFavs(fav) {
@@ -28,4 +29,12 @@ function findFavsByDiner(dinerId) {
         .select('t.name', 't.image', 't.cuisine_type', 't.physical_address')
         .join('trucks as t', 't.id', 'ft.truck_id')
         .where({ 'ft.diner_id': dinerId })
+}
+
+function findFavsBy(filter) {
+    return db('fav_trucks as ft')
+        .select('t.name', 't.image', 't.cuisine_type', 't.physical_address')
+        .join('diners as d', 'd.id', 'ft.diner_id')
+        .join('trucks as t', 't.id', 'ft.truck_id')
+        .where(filter)
 }

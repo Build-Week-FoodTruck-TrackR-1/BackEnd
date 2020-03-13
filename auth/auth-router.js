@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const operators = require('../operators/operators-model');
 const diners = require('../diners/diners-model');
+favorites = require('../trucks/fav-trucks-model');
 
 // registration for operators
 router.post('/register/operators', (req, res) => {
@@ -93,6 +94,13 @@ router.post('/login/operators', (req, res) => {
 router.post('/login/diners', (req, res) => {
     let { username, password } = req.body;
 
+    let favsArr;
+
+    favorites.findFavsBy({ username })
+        .then(f => {
+            favsArr = f;
+        })
+
     diners.findDinerBy({ username })
         .first()
         .then(diner => {
@@ -101,14 +109,20 @@ router.post('/login/diners', (req, res) => {
                 // req.session.loggedIn = true;
                 // req.session.username = diner.username;
 
+                const updatedDiner = {
+                    ...diner,
+                    favTrucks: favsArr
+                };
+
                 res.status(200).json({
                     message: `Welcome ${diner.username}`,
                     account: {
-                        id: diner.id,
-                        username: diner.username,
-                        email: diner.email,
-                        password: diner.password,
-                        location: diner.location
+                        id: updatedDiner.id,
+                        username: updatedDiner.username,
+                        email: updatedDiner.email,
+                        password: updatedDiner.password,
+                        location: updatedDiner.location,
+                        favTrucks: updatedDiner.favTrucks
                     },
                     token
                 })

@@ -81,6 +81,7 @@ router.get('/:truckId', (req, res) => {
             reviewArr = r;
         })
 
+    
     trucks.findTruckById(truckId)
         .then(truck => {
             if (truck) {
@@ -88,7 +89,18 @@ router.get('/:truckId', (req, res) => {
                     ...truck,
                     reviews: reviewArr
                 };
-                res.status(200).json(updatedTruck);
+
+                // lines 94-101 for calculating average of all ratings for truck
+                let total = 0;
+                let length = updatedTruck.reviews.length;
+                updatedTruck.reviews.forEach(({star_rating}) => total += star_rating);
+
+                const truckWithAvgRating = {
+                    ...updatedTruck,
+                    avg_rating: (total / length).toFixed(1)
+                }
+
+                res.status(200).json(truckWithAvgRating);
             } else {
                 res.status(404).json({ error: 'Could not find truck with the specified id' });
             }

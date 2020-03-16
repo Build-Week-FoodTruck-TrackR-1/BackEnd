@@ -6,6 +6,7 @@ module.exports = {
     deleteTruck,
     getAllTrucks,
     findTruckById,
+    findTruckByCuisine,
     getTrucksByOperator,
     addTruckReview,
     findReviewById,
@@ -41,6 +42,12 @@ function findTruckById(id) {
     .select('id', 'name', 'image', 'operator_id', 'cuisine_type', 'physical_address')
     .where({ id })
     .first()
+}
+
+function findTruckByCuisine(type) {
+    return db('trucks')
+    .select('*')
+    .where('cuisine_type', type)
 }
 
 function getTrucksByOperator(id) {

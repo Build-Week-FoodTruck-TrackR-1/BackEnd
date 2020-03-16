@@ -111,4 +111,18 @@ router.get('/:truckId', (req, res) => {
         })
 })
 
+// how diners get trucks by cuisine_type
+router.get('/type/:cuisine', (req, res) => {
+    const { cuisine } = req.params;
+
+    trucks.findTruckByCuisine(cuisine)
+        .then(trucks => {
+            res.status(200).json(trucks);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ errorMessage: 'unable to find specified tucks' });
+        })
+})
+
 module.exports = router;

@@ -23,7 +23,7 @@ exports.up = function(knex) {
             .string('cuisine_type', 255)
             .notNullable()
 
-        tbl.string('physical_address', 255)
+        tbl.string('current_location', 255)
     })
 };
 

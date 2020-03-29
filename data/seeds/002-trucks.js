@@ -14,21 +14,21 @@ exports.seed = function(knex) {
         },
         {
           name: 'Taqueria Mi Rancho', 
-          image: 'https://media-cdn.tripadvisor.com/media/photo-s/0f/f2/a6/1e/photo0jpg.jpg', 
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/zqXapZU8YR7SOj_epJboJw/o.jpg', 
           operator_id: 3, 
           cuisine_type: 'Mexican',
           current_location: '1434 1st Ave, Oakland, CA 94606'
         },
         {
           name: 'Yang Chinese Food', 
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSuEwzXecCmw7cNrVlsVq1wKv1m6zg_X-LBvXmqoeRLtw3bIJo9', 
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/gnIQiKLAHMbe-hebriB8KQ/o.jpg', 
           operator_id: 2, 
           cuisine_type: "Chinese",
           current_location: '328 10th St, Oakland, CA 94607'
         },
         {
           name: 'Taste of China Street Food', 
-          image: 'https://tucsonfoodie.com/wp-content/uploads/2019/07/TF-American-Asian-randall-irby-lemongrass-beef-bowl-0204-1024x683.jpg',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/v2wdgHLsDr845uRWoLM4kg/o.jpg',
           operator_id: 2,
           cuisine_type: 'Chinese',
           current_location: '2811 Telegraph Ave, Berkeley, CA 94705'

@@ -12,7 +12,7 @@ exports.seed = function(knex) {
         {diner_id: 3, truck_id: 2},
         {diner_id: 3, truck_id: 3},
         {diner_id: 1, truck_id: 4},
-        {diner_id: 1, truck_id: 7},
+        {diner_id: 1, truck_id: 8},
         {diner_id: 3, truck_id: 7},
         {diner_id: 3, truck_id: 6}
       ]);

@@ -7,7 +7,7 @@ exports.seed = function(knex) {
       return knex('trucks').insert([
         {
           name: 'Tacos El Gordo', 
-          image: 'https://res.cloudinary.com/rppcloud/image/fetch/s--S0JdFjLh--/c_fill,e_viesus_correct,g_auto,h_600,w_900/https://s3-media1.fl.yelpcdn.com/bphoto/iXq3jRRYk3-i-TjjJcv7mA/o.jpg', 
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/9vtpwRel1gua6nfwRghteg/l.jpg', 
           operator_id: 1, 
           cuisine_type: 'Mexican',
           current_location: '4201 International Blvd, Oakland, CA 94601'

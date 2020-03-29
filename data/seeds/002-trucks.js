@@ -39,6 +39,27 @@ exports.seed = function(knex) {
           operator_id: 1,
           cuisine_type: 'Mexican',
           current_location: '5801 International Blvd, Oakland, CA 94621'
+        },
+        {
+          name: 'Authentic India',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/h2YJG4-dOKEBfnV66MFoaQ/o.jpg',
+          operator_id: 4,
+          cuisine_type: 'Indian',
+          current_location: 'Harrison St &, 19th St, Oakland, CA 94612'
+        },
+        {
+          name: 'Curry Up Now',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/gQpigY6S1kjR1uWKaKnokA/l.jpg',
+          operator_id: 5,
+          cuisine_type: 'Indian',
+          current_location: '1437 Franklin St, Oakland, CA 94612',
+        },
+        {
+          name: 'Marhaban',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/l9dg3e0w-E3tOBKq2NJP_g/o.jpg',
+          operator_id: 6,
+          cuisine_type: 'Indian',
+          current_location: '377 13th St, Oakland, CA 94612'
         }
       ]);
     });

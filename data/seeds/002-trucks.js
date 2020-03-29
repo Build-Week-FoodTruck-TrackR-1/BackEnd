@@ -35,7 +35,7 @@ exports.seed = function(knex) {
         },
         {
           name: 'Tacos El Toro',
-          image: 'https://media1.fdncms.com/metrotimes/imager/u/blog/3604582/screen_shot_2017-05-02_at_4.32.23_pm.png?cb=1531348072',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/5Ul4rhQatkn_ym1tv-I-Uw/o.jpg',
           operator_id: 1,
           cuisine_type: 'Mexican',
           current_location: '5801 International Blvd, Oakland, CA 94621'

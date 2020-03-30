@@ -125,4 +125,18 @@ router.get('/type/:cuisine', (req, res) => {
         })
 })
 
+// how to get pics by truck
+router.get('/:truckId/images', (req, res) => {
+    const { truckId } = req.params;
+
+    trucks.getPicsByTruck(truckId)
+        .then(pics => {
+            res.status(200).json(pics);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to retrieve images' });
+        })
+})
+
 module.exports = router;

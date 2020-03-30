@@ -26,7 +26,7 @@ function findFavById(id) {
 
 function findFavsByDiner(dinerId) {
     return db('fav_trucks as ft')
-        .select('t.name', 't.image', 't.cuisine_type', 't.current_location')
+        .select('t.id', 't.name', 't.image', 't.cuisine_type', 't.current_location')
         .join('trucks as t', 't.id', 'ft.truck_id')
         .where({ 'ft.diner_id': dinerId })
 }

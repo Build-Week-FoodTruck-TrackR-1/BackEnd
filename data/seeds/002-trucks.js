@@ -60,6 +60,41 @@ exports.seed = function(knex) {
           operator_id: 6,
           cuisine_type: 'Indian',
           current_location: '377 13th St, Oakland, CA 94612'
+        },
+        {
+          name: 'Mi Grullense',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/QHu0H_tDdJdmDEvSnlrihQ/l.jpg',
+          operator_id: 1,
+          cuisine_type: 'Mexican',
+          current_location: '1301 30th Ave, Oakland, CA 94601'
+        },
+        {
+          name: 'Aguachiles El Tamarindo',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/fxbfvx4Z-eKouuP0r-yOmw/o.jpg',
+          operator_id: 3,
+          cuisine_type: 'Mexican',
+          current_location: '3053 International Blvd, Oakland, CA 94601'
+        },
+        {
+          name: 'El Tio Juan Taco Truck',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/nUSmPLLOGPBCmnuUCfT5Pw/o.jpg',
+          operator_id: 1,
+          cuisine_type: 'Mexican',
+          current_location: '4075 Foothill Blvd, Oakland, CA 94601'
+        },
+        {
+          name: 'Naan N Curry',
+          image: 'https://lh3.googleusercontent.com/-660oLtOhnsY/XiWJ-SNarbI/AAAAAAAAF78/gj5La9FoQQQBGORbBUGffb3knDlKhb6FgCLIBGAYYCw/w960-h960-n-o-k-v1/',
+          operator_id: 6,
+          cuisine_type: 'Indian',
+          current_location: '948 Clay St, Oakland, CA 94607',
+        },
+        {
+         name: 'India On Wheels',
+         image: 'https://s3-media0.fl.yelpcdn.com/bphoto/WT69yAT8JHT-ZlK8yRYruA/l.jpg',
+         operator_id: 6,
+         cuisine_type: 'Indian',
+         current_location: '51st St & Telegraph Ave, Oakland, CA 94609'
         }
       ]);
     });

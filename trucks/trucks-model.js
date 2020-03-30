@@ -10,7 +10,8 @@ module.exports = {
     getTrucksByOperator,
     addTruckReview,
     findReviewById,
-    getReviewsByTruck
+    getReviewsByTruck,
+    getPicsByTruck
 }
 
 function addTruck(truck) {
@@ -83,5 +84,12 @@ function getReviewsByTruck(truckId) {
         .select('d.username', 'tr.star_rating', 'tr.review')
         .join('diners as d', 'd.id', 'tr.diner_id')
         .where('tr.truck_id', truckId)
+}
+
+function getPicsByTruck(truckId) {
+    return db('diner_uploaded_pics as pic')
+        .select('pic.image', 'pic.diner_id')
+        .join('trucks as t', 't.id', 'pic.truck_id')
+        .where('pic.truck_id', truckId)
 }
 

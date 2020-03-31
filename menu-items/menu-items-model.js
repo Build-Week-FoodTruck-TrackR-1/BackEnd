@@ -41,7 +41,7 @@ function deleteMenuItem(id) {
 
 function getMenuByTruck(truckId) {
     return db('menu_items as mi')
-        .select('mi.name', 'mi.description', 'mi.price')
+        .select('mi.name', 'mi.description', 'mi.price', 'mi.image')
         .join('trucks as t', 't.id', 'mi.truck_id')
         .where('t.id', truckId)
 }

@@ -16,6 +16,9 @@ exports.up = function(knex) {
             .notNullable()
 
         tbl
+            .string('image', 500)
+
+        tbl
             .integer('truck_id')
             .unsigned()
             .notNullable()

@@ -78,6 +78,8 @@ router.get('/:truckId', (req, res) => {
 
     let picsArr;
 
+    let menuArr;
+
     trucks.getReviewsByTruck(truckId)
         .then(r => {
             reviewArr = r;
@@ -88,6 +90,11 @@ router.get('/:truckId', (req, res) => {
             picsArr = p;
         })
 
+    menu.getMenuByTruck(truckId)
+        .then(m => {
+            menuArr = m;
+        })
+
     
     trucks.findTruckById(truckId)
         .then(truck => {
@@ -95,7 +102,8 @@ router.get('/:truckId', (req, res) => {
                 const updatedTruck = {
                     ...truck,
                     reviews: reviewArr,
-                    truck_images: picsArr
+                    truck_images: picsArr,
+                    menu: menuArr
                 };
 
                 // lines 94-101 for calculating average of all ratings for truck

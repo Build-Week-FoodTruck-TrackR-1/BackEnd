@@ -4,7 +4,8 @@ module.exports = {
     addToFavs,
     findFavById,
     findFavsByDiner,
-    findFavsBy
+    findFavsBy,
+    deleteFromFavs
 }
 
 function addToFavs(fav) {
@@ -37,4 +38,10 @@ function findFavsBy(filter) {
         .join('diners as d', 'd.id', 'ft.diner_id')
         .join('trucks as t', 't.id', 'ft.truck_id')
         .where(filter)
+}
+
+function deleteFromFavs(dinerId, truckId) {
+    return db('fav_trucks as ft')
+    .where({ 'ft.diner_id' : dinerId, 'ft.truck_id' : truckId })
+    .del()
 }

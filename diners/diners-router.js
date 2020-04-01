@@ -69,24 +69,6 @@ router.delete('/:id', (req, res) => {
         })
 })
 
-// how diners add favorite truck
-router.post('/:dinerId/fav/:truckId', (req, res) => {
-    const { dinerId, truckId } = req.params;
-    let newFav = req.body;
-    newFav.diner_id = dinerId;
-    newFav.truck_id = truckId;
-
-    favorites.addToFavs(newFav)
-        .then(added => {
-            // console.log(`id being generated: ${newFav.id}`)
-            res.status(201).json(added);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ errorMessage: 'unable to add to favorites' });
-        })
-})
-
 // how diners change location
 router.patch('/:id', (req, res) => {
     const { id } = req.params;
@@ -113,6 +95,38 @@ router.get('/:id/favorites', (req, res) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({ errorMessage: 'An error occurred while retrieving trucks. Please try again.' });
+        })
+})
+
+// how diners add favorite truck
+router.post('/:dinerId/fav/:truckId', (req, res) => {
+    const { dinerId, truckId } = req.params;
+    let newFav = req.body;
+    newFav.diner_id = dinerId;
+    newFav.truck_id = truckId;
+
+    favorites.addToFavs(newFav)
+        .then(added => {
+            // console.log(`id being generated: ${newFav.id}`)
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to add to favorites' });
+        })
+})
+
+// how diners delete remove from favorite trucks
+router.delete('/:dinerId/fav/:truckId', (req, res) => {
+    const { dinerId, truckId } = req.params;
+    
+    favorites.deleteFromFavs(dinerId, truckId)
+        .then(deleted => {
+            res.status(200).json(deleted);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to delete from favorites' })
         })
 })
 

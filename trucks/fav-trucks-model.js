@@ -20,7 +20,7 @@ function findFavById(id) {
     return db('fav_trucks as ft')
     .join('trucks as t', 't.id', 'ft.truck_id')
     .where({ 'ft.id': id  })
-    .select('ft.truck_id', 't.name')
+    .select('t.id', 't.name', 't.image')
     .first()
 }
 

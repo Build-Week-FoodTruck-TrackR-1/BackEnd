@@ -26,6 +26,10 @@ exports.up = function(knex) {
             .inTable('trucks')
             .onDelete('CASCADE')
             .onUpdate('CASCADE')
+
+        tbl
+            .string('category', 255)
+            .notNullable()
     })
 
     // menu items ratings table

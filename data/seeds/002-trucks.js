@@ -35,7 +35,7 @@ exports.seed = function(knex) {
         },
         {
           name: 'Alo\'s Taco Truck',
-          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/5Ul4rhQatkn_ym1tv-I-Uw/o.jpg',
+          image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/89967933_1942695219208046_4095907222666608640_o.jpg?_nc_cat=108&_nc_sid=110474&_nc_eui2=AeEdRs9IljbLlgBtRKiCEUMLO6Ok3sX3EsE7o6TexfcSwSRMYyfREFMupzlO4Vz4vKU&_nc_ohc=rzDCKZVPWdkAX-KLLYD&_nc_ht=scontent.fsdu12-1.fna&oh=64993216c3ac7816b8a076cce08884bb&oe=5ED7D1F2',
           operator_id: 1,
           cuisine_type: 'Mexican',
           current_location: '5801 International Blvd, Oakland, CA 94621'

@@ -21,20 +21,20 @@ exports.seed = function(knex) {
         },
         {
           name: 'Big Wang\'s', 
-          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/gnIQiKLAHMbe-hebriB8KQ/o.jpg', 
+          image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/50699179_607897809662785_7723058806954917888_o.jpg?_nc_cat=102&_nc_sid=2d5d41&_nc_eui2=AeFRxQMRFeT05Yi9a_M94Ljua0Ea5zWw2BBrQRrnNbDYEO5teWWMM5gM8BzUmk7gRnA&_nc_ohc=kmZRnKuwpg8AX-oy2hO&_nc_ht=scontent.fsdu12-1.fna&oh=6811c140e972027b4badba0df69f82e4&oe=5ED7963F', 
           operator_id: 2, 
           cuisine_type: "Chinese",
           current_location: '328 10th St, Oakland, CA 94607'
         },
         {
           name: 'Fortune Cooking', 
-          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/v2wdgHLsDr845uRWoLM4kg/o.jpg',
+          image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/13781749_1238197622889356_7309209962540576076_n.jpg?_nc_cat=111&_nc_sid=110474&_nc_eui2=AeG8aCOjndNWTIEqN1Fn4YYw8I_8yeOhyXrwj_zJ46HJen3rA5RcEyux0Pv5CFzrOlw&_nc_ohc=oFqcGXKxuv0AX8dUygz&_nc_ht=scontent.fsdu12-1.fna&oh=cccb5225de4dc1ec5a62d581939fe940&oe=5ED8FE33',
           operator_id: 2,
           cuisine_type: 'Chinese',
           current_location: '2811 Telegraph Ave, Berkeley, CA 94705'
         },
         {
-          name: 'Tacos El Toro',
+          name: 'Alo\'s Taco Truck',
           image: 'https://s3-media0.fl.yelpcdn.com/bphoto/5Ul4rhQatkn_ym1tv-I-Uw/o.jpg',
           operator_id: 1,
           cuisine_type: 'Mexican',

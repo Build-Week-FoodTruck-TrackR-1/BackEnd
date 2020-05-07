@@ -22,6 +22,10 @@ exports.seed = function(knex) {
         {diner_id: 1, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/14657390_313829955669718_7089402272890657097_n.jpg?_nc_cat=104&_nc_sid=110474&_nc_eui2=AeG0bnMdC5ucczXiCiSYxkJ2ApO_cIsvSWACk79wiy9JYFkf4ommGfBppTiRpfioegY&_nc_ohc=d-HX4fMP99QAX_2_fie&_nc_ht=scontent.fsdu12-1.fna&oh=40082230f362d9ced7603115dd46a418&oe=5ED99211', truck_id: 4},
         {diner_id: 2, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/14671206_313829922336388_6820418261419045650_n.jpg?_nc_cat=104&_nc_sid=110474&_nc_eui2=AeHUbVcECHK-W7Cl3Q7kzeYX2QkU8JP0CufZCRTwk_QK52ZUZFE4vGcBGjOFqyXQBgA&_nc_ohc=2N_N_dF9kK8AX95eebF&_nc_ht=scontent.fsdu12-1.fna&oh=21404463465b40320ac6430d306ba5c6&oe=5EDA50D7', truck_id: 4},
         {diner_id: 2, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/40063643_684124678640242_8057460687129018368_n.jpg?_nc_cat=104&_nc_sid=110474&_nc_eui2=AeGwLevcgYYRt3C3AZgMNz9UUyEk0LwSbitTISTQvBJuK30SrzuGoyeuzEUsEOV-BT4&_nc_ohc=Rz_hRSt6q7IAX8cfWud&_nc_ht=scontent.fsdu12-1.fna&oh=8fd5d90d2bbd7431c761fead64ecc377&oe=5ED85C43', truck_id: 4},
+        {diner_id: 1, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/tCx6MptV_hL72IEPkm_yAQ/o.jpg', truck_id: 5},
+        {diner_id: 1, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/3bNE8d2vhMofDNKmwEG83A/o.jpg', truck_id: 5},
+        {diner_id: 2, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/pmcMMUbWcDd4tIRp3k0Hxg/o.jpg', truck_id: 5},
+        {diner_id: 2, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/89706605_1943695112441390_7513634011168636928_n.jpg?_nc_cat=100&_nc_sid=110474&_nc_eui2=AeHNqxrS7bXmdBaoJoo-cT3PmV1kswQs472ZXWSzBCzjvc2b8P-tJVcJnkm9veg589k&_nc_ohc=pZ-2r9X1ZYAAX-V9s4j&_nc_ht=scontent.fsdu12-1.fna&oh=e17359440384bb063d1cb7255bc06387&oe=5ED72A5A', truck_id: 5},
       ]);
     });
 };

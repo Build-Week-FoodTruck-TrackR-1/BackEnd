@@ -20,14 +20,14 @@ exports.seed = function(knex) {
           current_location: '1434 1st Ave, Oakland, CA 94606'
         },
         {
-          name: 'Yang Chinese Food', 
+          name: 'Big Wang\'s', 
           image: 'https://s3-media0.fl.yelpcdn.com/bphoto/gnIQiKLAHMbe-hebriB8KQ/o.jpg', 
           operator_id: 2, 
           cuisine_type: "Chinese",
           current_location: '328 10th St, Oakland, CA 94607'
         },
         {
-          name: 'Taste of China Street Food', 
+          name: 'Fortune Cooking', 
           image: 'https://s3-media0.fl.yelpcdn.com/bphoto/v2wdgHLsDr845uRWoLM4kg/o.jpg',
           operator_id: 2,
           cuisine_type: 'Chinese',

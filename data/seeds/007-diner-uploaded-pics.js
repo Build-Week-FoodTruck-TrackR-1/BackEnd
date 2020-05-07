@@ -30,6 +30,10 @@ exports.seed = function(knex) {
         {diner_id: 2, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/ACyb533WB54P7qUaAG0G3A/o.jpg', truck_id: 7},
         {diner_id: 3, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/kTdt6f7bvt9RrvJQPBs9Ow/o.jpg', truck_id: 7},
         {diner_id: 3, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/9wc8lPikeaiDcWtN85L5Ag/o.jpg', truck_id: 7},
+        {diner_id: 8, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/mUOVpkoATzC38BwsiDSqCg/o.jpg', truck_id: 6},
+        {diner_id: 1, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/86461622_3500190460022440_5006070647353245696_n.jpg?_nc_cat=108&_nc_sid=9e2e56&_nc_eui2=AeFe7anhqRuMW_NqP6MP2et_yUpfAh8AgYjJSl8CHwCBiNsCUau32aXIol7jQ7IuiUM&_nc_ohc=HMr9M581YUgAX9r9L22&_nc_ht=scontent.fsdu12-1.fna&oh=7890dfa5a93457c17e6b17990eff98d6&oe=5ED92C26', truck_id: 6},
+        {diner_id: 3, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/3UJyEbQjvZZgFZXoLLOExQ/o.jpg', truck_id: 6},
+        {diner_id: 4, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/70167112_3039617296079761_4236536988947185664_o.jpg?_nc_cat=101&_nc_sid=110474&_nc_eui2=AeGqEQy7KJYQ7PskceaA7C4NcRB9PHn2GWxxEH08efYZbBar9HSXVC7EC-QqZCcqV-o&_nc_ohc=DQoIn1XG1dkAX9cdUux&_nc_ht=scontent.fsdu12-1.fna&oh=fe2d6493df7cc5b871fe4ef187cbc308&oe=5EDA67EC', truck_id: 6}
       ]);
     });
 };

@@ -25,8 +25,14 @@ exports.seed = function(knex) {
         {name: 'carne asada burrito', price: 8.00, category: 'entree', truck_id: 5},
         {name: 'carne asada fries', price: 11.00, category: 'entree', truck_id: 5},
         {name: 'horchata', price: 2.50, category: 'drink', truck_id: 5},
-        {name: 'egg foo young', description: 'fried egg dish with meat and gracy', price: 10.00, category: 'entree', truck_id: 4},
+        {name: 'brocolli beef', price: 9.00, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/67628898_895064414212933_8620750978053832704_o.jpg?_nc_cat=108&_nc_sid=110474&_nc_eui2=AeFL0MyNRjT9NvlCX74BGzUWPSIhbNbzx-g9IiFs1vPH6M2ya_c0YB_pLt2levP0i4Y&_nc_ohc=fFHhJscSNeMAX8fiwx1&_nc_ht=scontent.fsdu12-1.fna&oh=2c82474814c2fa22e7dccbea705951f0&oe=5ED90D97', category: 'entree', truck_id: 4},
+        {name: 'jalapeño chicken', price: 9.00, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/67824808_895064357546272_8798255469522059264_o.jpg?_nc_cat=109&_nc_sid=110474&_nc_eui2=AeFKdsppCpr_q3AfenHNM9mWXeOr14QQarpd46vXhBBqug2huumckzxEknvrDz0AsmE&_nc_ohc=ktoxz1wz5BgAX-NTeSL&_nc_ht=scontent.fsdu12-1.fna&oh=db75c5aa3b9e2ba770f85955d68cea25&oe=5ED95321', category: 'entree', truck_id: 4},
+        {name: 'Philadelphia roll', price: 11.00, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/40049823_684124671973576_8566498944035586048_n.jpg?_nc_cat=106&_nc_sid=110474&_nc_eui2=AeFcjXYJpK_-C2n4lL8QwlPoAJGqkeYSP3sAkaqR5hI_e_KvZi4Mh1dIBxMEVzVqGYY&_nc_ohc=M5WCW-T13WoAX8GsG6K&_nc_ht=scontent.fsdu12-1.fna&oh=66291a7d1c79470a5758b9281528f487&oe=5ED83E3C', category: 'entree', truck_id: 4},
+        {name: 'spicy avocado roll', price: 10.00, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/40063643_684124678640242_8057460687129018368_n.jpg?_nc_cat=104&_nc_sid=110474&_nc_eui2=AeGwLevcgYYRt3C3AZgMNz9UUyEk0LwSbitTISTQvBJuK30SrzuGoyeuzEUsEOV-BT4&_nc_ohc=Rz_hRSt6q7IAX8cfWud&_nc_ht=scontent.fsdu12-1.fna&oh=8fd5d90d2bbd7431c761fead64ecc377&oe=5ED85C43', category: 'entree', truck_id: 4},
         {name: 'shrimp fried rice', price: 10.00, category: 'entree', truck_id: 4},
+        {name: 'can soda', price: 2.00, category: 'drink', truck_id: 4},
+        {name: 'bottled water', price: 1.50, category: 'drink', truck_id: 4},
+        {name: 'orange juice', price: 2.00, category: 'drink', truck_id: 4},
       ]);
     });
 };

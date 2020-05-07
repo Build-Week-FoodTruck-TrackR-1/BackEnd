@@ -34,6 +34,11 @@ exports.seed = function(knex) {
         {name: 'can soda', price: 2.00, category: 'drink', truck_id: 4},
         {name: 'bottled water', price: 1.50, category: 'drink', truck_id: 4},
         {name: 'orange juice', price: 2.00, category: 'drink', truck_id: 4},
+        {name: 'tikka masala burrito', price: 9.25, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/QA5LUMxd9hXWb636fvWbkQ/o.jpg', category: 'entree', truck_id: 7},
+        {name: 'mashed potatoe fritters between buttered buns', price: 7.00, image:'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/93419723_10158121749944378_3015405944776425472_o.jpg?_nc_cat=102&_nc_sid=8024bb&_nc_eui2=AeHPxRIuwiMTNvb_lcnH5Y8k8zQOmMZO547zNA6Yxk7njvIQzkQoZ6lnTM6FgKYoeMw&_nc_ohc=bGABCgCcbwIAX-QQbpT&_nc_ht=scontent.fsdu12-1.fna&oh=c250fe69a299a3316bf794ab4018e1b8&oe=5EDA32F3', category: 'entree', truck_id: 7},
+        {name: 'naughty naan', price: 12.50, image:'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/93419723_10158121749944378_3015405944776425472_o.jpg?_nc_cat=102&_nc_sid=8024bb&_nc_eui2=AeHPxRIuwiMTNvb_lcnH5Y8k8zQOmMZO547zNA6Yxk7njvIQzkQoZ6lnTM6FgKYoeMw&_nc_ohc=bGABCgCcbwIAX-QQbpT&_nc_ht=scontent.fsdu12-1.fna&oh=c250fe69a299a3316bf794ab4018e1b8&oe=5EDA32F3', category: 'entree', truck_id: 7},
+        {name: 'Holy Moly Fried Ravioli', price: 11.00, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/92313452_10158085825529378_5724688005336137728_o.jpg?_nc_cat=108&_nc_sid=8024bb&_nc_eui2=AeFvDctr9y8fq64hfsjD-rPhvyJKO_zTKua_Iko7_NMq5nqwzrA3ZFLAoLMl1ztLC3M&_nc_ohc=TT30f8chg3kAX8dIycY&_nc_ht=scontent.fsdu12-1.fna&oh=caf2e881c22bfeeb475c7933492d5d16&oe=5EDA09BA', category: 'entree', truck_id: 7},
+        {name: 'sexy fries', price: 9.00, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/79392317_10157685788509378_3010373003314724864_o.jpg?_nc_cat=105&_nc_sid=8024bb&_nc_eui2=AeHMppNu1dv7FBOKDVTwqtq_x1Km7AhsPl3HUqbsCGw-XV9Q1UG22ZsBV2nOL3dkfpM&_nc_ohc=Un6B5osZb_oAX_LZv9n&_nc_ht=scontent.fsdu12-1.fna&oh=56a0aa84fbffbda128de23c79e656bce&oe=5ED8739A', category: 'side', truck_id: 7},
       ]);
     });
 };

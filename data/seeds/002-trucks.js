@@ -49,7 +49,7 @@ exports.seed = function(knex) {
         },
         {
           name: 'Curry Up Now',
-          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/gQpigY6S1kjR1uWKaKnokA/l.jpg',
+          image: 'https://s3-media0.fl.yelpcdn.com/bphoto/_eyJ6Kj-7Ae_UoCcKLjwHA/o.jpg',
           operator_id: 5,
           cuisine_type: 'Indian',
           current_location: '1437 Franklin St, Oakland, CA 94612',

@@ -7,7 +7,11 @@ module.exports = {
     findAllDiners,
     editDiner,
     deleteDiner,
-    editDinerLocation
+    editDinerLocation,
+    getDinerCard,
+    addDinerCard,
+    editDinerCard,
+    deleteDinerCard
 }
 
 function addDiner(diner) {
@@ -58,4 +62,34 @@ function editDinerLocation(changes, id) {
         .then(() => {
             return findDinerById(id);
         })
+}
+
+function getDinerCard(id) {
+    return db('diner_cards as dc')
+        .select('name', 'num', 'exp_date', 'cvc', 'zip')
+        .where({ diner_id: id })
+}
+
+function addDinerCard(card) {
+    return db('diner_cards')
+        .insert(card, 'id')
+        // .then(ids => {
+        //     const [id] = ids;
+        //     return getDinerCard(id)
+        // })
+}
+
+function editDinerCard(changes, id) {
+    return db('diner_cards')
+        .where({ diner_id: id })
+        .update(changes)
+        .then(() => {
+            return findDinerById(id);
+        })
+}
+
+function deleteDinerCard(id) {
+    return db('diner_cards')
+        .where({ diner_id: id })
+        .del()
 }

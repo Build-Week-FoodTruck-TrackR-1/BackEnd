@@ -95,10 +95,16 @@ router.post('/login/diners', (req, res) => {
     let { username, password } = req.body;
 
     let favsArr;
+    let card;
 
     favorites.findFavsBy({ username })
         .then(f => {
             favsArr = f;
+        })
+
+    diners.findCardBy({ username })
+        .then(c => {
+            card = c;
         })
 
     diners.findDinerBy({ username })
@@ -111,7 +117,8 @@ router.post('/login/diners', (req, res) => {
 
                 const updatedDiner = {
                     ...diner,
-                    favTrucks: favsArr
+                    favTrucks: favsArr,
+                    cardOnFile: card
                 };
 
                 res.status(200).json({
@@ -122,7 +129,8 @@ router.post('/login/diners', (req, res) => {
                         email: updatedDiner.email,
                         password: updatedDiner.password,
                         location: updatedDiner.location,
-                        favTrucks: updatedDiner.favTrucks
+                        favTrucks: updatedDiner.favTrucks,
+                        cardOnFile: updatedDiner.cardOnFile[0]
                     },
                     token
                 })

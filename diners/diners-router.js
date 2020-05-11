@@ -143,7 +143,7 @@ router.post('/:dinerId/card', (req, res) => {
     const { dinerId } = req.params;
 
     let newCard = req.body;
-    newCard.diner_id = Number(dinerId);
+    newCard.diner_id = dinerId;
 
     diners.addDinerCard(newCard)
         .then(added => {

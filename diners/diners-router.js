@@ -13,18 +13,26 @@ router.get('/:id', (req, res) => {
     const { id } = req.params;
 
     let favsArr;
+    let card;
 
     favorites.findFavsByDiner(id)
         .then(f => {
             favsArr = f;
         })
+    
+    diners.getDinerCard(id)
+        .then(c => {
+            card = c;
+        })
+    
 
     diners.findDinerById(id)
         .then(diner => {
             if (diner) {
                 const updatedDiner = {
                     ...diner,
-                    favTrucks: favsArr
+                    favTrucks: favsArr,
+                    cardOnFile: card
                 };
                 res.status(200).json(updatedDiner);
             } else {
@@ -127,6 +135,53 @@ router.delete('/:dinerId/fav/:truckId', (req, res) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to delete from favorites' })
+        })
+})
+
+// how diners add credit/debit card
+router.post('/:dinerId/card', (req, res) => {
+    const { dinerId } = req.params;
+
+    let newCard = req.body;
+    newCard.diner_id = Number(dinerId);
+
+    diners.addDinerCard(newCard)
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to add to card' });
+        })
+})
+
+// how diners edit credit/debit card
+router.patch('/:dinerId/card', (req, res) => {
+    const { dinerId } = req.params;
+
+    let updatedCard = req.body;
+
+    diners.editDinerCard(updatedCard, dinerId)
+        .then(updated => {
+            res.status(200).json(updated);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to update card' });
+        })
+})
+
+// how diners delete debit/credit card
+router.delete('/:dinerId/card', (req, res) => {
+    const { dinerId } = req.params;
+
+    diners.deleteDiner(dinerId)
+        .then(deleted => {
+            res.status(200).json(deleted)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to remove card' });
         })
 })
 

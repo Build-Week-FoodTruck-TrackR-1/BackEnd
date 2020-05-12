@@ -95,14 +95,6 @@ function deleteDinerCard(id) {
         .del()
 }
 
-// function findFavsBy(filter) {
-//     return db('fav_trucks as ft')
-//         .select('t.id', 't.name', 't.image', 't.cuisine_type', 't.current_location')
-//         .join('diners as d', 'd.id', 'ft.diner_id')
-//         .join('trucks as t', 't.id', 'ft.truck_id')
-//         .where(filter)
-// }
-
 function findCardBy(filter) {
     return db('diner_cards as dc')
         .select('dc.name', 'dc.num', 'dc.exp_date', 'dc.cvc', 'dc.zip')

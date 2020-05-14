@@ -39,8 +39,8 @@ router.post('/register/diners', (req, res) => {
     const hash = bcrypt.hashSync(diner.password, 8);
     diner.password = hash;
 
-    if (!diner.username || !diner.email || !diner.password) {
-        res.status(400).json({ error: 'Please enter username, email and password'})
+    if (!diner.name || !diner.username || !diner.email || !diner.password) {
+        res.status(400).json({ error: 'Please enter full name, username, email and password'})
     } else {
         diners.addDiner(diner)
             .then(added => {

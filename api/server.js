@@ -42,7 +42,6 @@ const corsOptions = {
       'https://m.stripe.com/4'
     ],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: false
 }
 
 server.use(cors(corsOptions));

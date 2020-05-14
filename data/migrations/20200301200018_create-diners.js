@@ -6,6 +6,10 @@ exports.up = function(knex) {
             tbl.increments()
 
             tbl
+                .string('name', 255)
+                .notNullable()
+
+            tbl
                 .string('username', 255)
                 .notNullable()
                 .unique()

@@ -38,7 +38,8 @@ const corsOptions = {
       'http://localhost:3000',
       'https://confident-volhard-97d9a3.netlify.com/',
       'https://m.stripe.network',
-      'https://m.stripe.com '
+      'https://m.stripe.com',
+      'https://m.stripe.com/4'
     ],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: false

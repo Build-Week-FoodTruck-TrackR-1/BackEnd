@@ -33,15 +33,15 @@ const sessionConfig = {
         clearInterval: 1000 * 60 * 15
     })
 }
-const corsOptions = {
-    origin: [
-      'http://localhost:3000',
-      'https://confident-volhard-97d9a3.netlify.com/'
-    ],
-    credentials: true
-}
+// const corsOptions = {
+//     origin: [
+//       'http://localhost:3000',
+//       'https://confident-volhard-97d9a3.netlify.com/'
+//     ],
+//     credentials: true
+// }
 
-server.use(cors(corsOptions));
+server.use(cors());
 
 server.get("/hash", (req, res) => {
     const authentification = req.headers.authentification;

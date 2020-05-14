@@ -35,11 +35,17 @@ const sessionConfig = {
 }
 const corsOptions = {
     origin: [
-      'http://localhost:3000',
-      'https://confident-volhard-97d9a3.netlify.com/',
-      'https://m.stripe.network',
-      'https://m.stripe.com',
-      'https://m.stripe.com/4'
+        'http://localhost:3000',
+        'https://confident-volhard-97d9a3.netlify.com/',
+        'https://m.stripe.network',
+        'https://m.stripe.com',
+        'https://m.stripe.com/4',
+        'api.stripe.com',
+       'checkout.stripe.com',
+        'js.stripe.com',
+        'm.stripe.com',
+        'm.stripe.network',
+        'q.stripe.com'
     ],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }

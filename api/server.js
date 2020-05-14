@@ -33,25 +33,25 @@ const sessionConfig = {
         clearInterval: 1000 * 60 * 15
     })
 }
-const corsOptions = {
-    origin: [
-        'http://localhost:3000/login',
-        'https://confident-volhard-97d9a3.netlify.com/',
-        'https://m.stripe.network',
-        'https://m.stripe.com',
-        'https://m.stripe.com/4',
-        'api.stripe.com',
-       'checkout.stripe.com',
-        'js.stripe.com',
-        'm.stripe.com',
-        'm.stripe.network',
-        'q.stripe.com',
-        'https://food-truck-trackr.netlify.app/'
-    ],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}
+// const corsOptions = {
+//     origin: [
+//         'http://localhost:3000/',
+//         'https://confident-volhard-97d9a3.netlify.com/',
+//         'https://m.stripe.network',
+//         'https://m.stripe.com',
+//         'https://m.stripe.com/4',
+//         'api.stripe.com',
+//        'checkout.stripe.com',
+//         'js.stripe.com',
+//         'm.stripe.com',
+//         'm.stripe.network',
+//         'q.stripe.com',
+//         'https://food-truck-trackr.netlify.app/'
+//     ],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+// }
 
-server.use(cors(corsOptions));
+server.use(cors());
 
 server.get("/hash", (req, res) => {
     const authentification = req.headers.authentification;

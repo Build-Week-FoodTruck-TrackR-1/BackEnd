@@ -52,20 +52,21 @@ router.post("/register/diners", (req, res) => {
   } else {
     diners
       .addDiner(diner)
-      .then(({ id, name, email }) => {
+      .then((added) => {
         // const token = generateToken(added);
         // req.session.loggedIn = true;
         let customer = {
-          id,
-          name,
-          email,
+          id: added.id,
+          name: added.name,
+          email: added.email,
         };
 
         stripe.customers.create(customer, function (err, customer) {
           if (err) {
             console.log(`Error:`, err);
+            res.status(400).json({ err });
           } else {
-            res.status(201).json(customer);
+            res.status(201).json(added);
           }
         });
       })

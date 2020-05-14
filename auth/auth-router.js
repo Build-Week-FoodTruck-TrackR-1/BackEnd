@@ -49,7 +49,6 @@ router.post('/register/diners', (req, res) => {
             .then(added => {
                 // const token = generateToken(added);
                 // req.session.loggedIn = true;
-                res.status(201).json(added);
                 let customer = {
                     id: added.id,
                     name: added.name,
@@ -65,6 +64,7 @@ router.post('/register/diners', (req, res) => {
                         console.log('Something went wrong');
                     }
                 })
+                res.status(201).json(added);
             })
             .catch(error => {
                 console.log(error);

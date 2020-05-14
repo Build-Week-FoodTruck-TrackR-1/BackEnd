@@ -31,14 +31,14 @@ function findDinerBy(filter) {
 
 function findDinerById(id) {
     return db('diners')
-        .select('id', 'username', 'email', 'password', 'location')
+        .select('id', 'name', 'username', 'email', 'password', 'location')
         .where({ id })
         .first()
 }
 
 function findAllDiners() {
     return db('diners as d')
-        .select('d.id', 'd.username', 'd.email', 'd.password', 'd.location')
+        .select('d.id', 'd.name', 'd.username', 'd.email', 'd.password', 'd.location')
 }
 
 function editDiner(changes, id) {

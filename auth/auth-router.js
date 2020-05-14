@@ -9,6 +9,9 @@ const operators = require('../operators/operators-model');
 const diners = require('../diners/diners-model');
 favorites = require('../trucks/fav-trucks-model');
 
+const env = require("dotenv").config({ path: "./.env" });
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 // registration for operators
 router.post('/register/operators', (req, res) => {
     let operator = req.body;
@@ -47,6 +50,21 @@ router.post('/register/diners', (req, res) => {
                 // const token = generateToken(added);
                 // req.session.loggedIn = true;
                 res.status(201).json(added);
+                let customer = {
+                    id: added.id,
+                    name: added.name,
+                    email: added.email
+                }
+
+                stripe.customers.create(customer, function(err, customer) {
+                    if (err) {
+                        console.log(err);
+                    } else if (customer) {
+                        console.log(`success: ${customer}`);
+                    } else {
+                        console.log('Something went wrong');
+                    }
+                })
             })
             .catch(error => {
                 console.log(error);

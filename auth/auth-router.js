@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
 const operators = require('../operators/operators-model');
 const diners = require('../diners/diners-model');
@@ -36,7 +37,7 @@ router.post('/register/operators', (req, res) => {
 })
 
 // registration for diners
-router.post('/register/diners', (req, res) => {
+router.post('/register/diners', cors(), (req, res) => {
     let diner = req.body;
 
     const hash = bcrypt.hashSync(diner.password, 8);

@@ -45,7 +45,8 @@ const corsOptions = {
         'js.stripe.com',
         'm.stripe.com',
         'm.stripe.network',
-        'q.stripe.com'
+        'q.stripe.com',
+        'https://food-truck-trackr.netlify.app/'
     ],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }

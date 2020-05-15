@@ -9,8 +9,8 @@ const operators = require("../operators/operators-model");
 const diners = require("../diners/diners-model");
 favorites = require("../trucks/fav-trucks-model");
 
-const env = require("dotenv").config({ path: "./.env" });
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const env = require("dotenv").config({ path: "../.env" });
+const stripe = require("stripe")(env.STRIPE_SECRET_KEY);
 
 // registration for operators
 router.post("/register/operators", (req, res) => {

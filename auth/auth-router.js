@@ -63,9 +63,11 @@ router.post("/register/diners", (req, res) => {
 
         stripe.customers.create(customer, function (err, customer) {
           if (err) {
+            console.log(`Stripe secret key: ${process.env.STRIPE_SECRET_KEY}`)
             console.log(`Error:`, err);
             res.status(400).json({ err });
           } else {
+            console.log(`Stripe secret key: ${process.env.STRIPE_SECRET_KEY}`)
             res.status(201).json(added);
           }
         });

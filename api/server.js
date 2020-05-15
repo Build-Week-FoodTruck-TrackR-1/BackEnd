@@ -53,7 +53,7 @@ const corsOptions = {
   credentials: true,
 };
 
-server.use(cors());
+server.use(cors(corsOptions));
 
 server.get("/hash", (req, res) => {
   const authentification = req.headers.authentification;

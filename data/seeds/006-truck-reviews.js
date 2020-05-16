@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('truck_reviews').del()
-    .then(function () {
+  // return knex('truck_reviews').del()
+  //   .then(function () {
       // Inserts seed entries
       return knex('truck_reviews').insert([
         {diner_id: 1, truck_id: 1, star_rating: 5, review: 'Tacos el Gordo is hands down one of the best taco trucks in Oakland! My mouth is watering writing this review. Favorite tacos are the steak and chicken. The carne asada is cooked to perfection and the chicken is infused with bold flavors, put them both on the same plate next to radishes, grilled onion and a whole jalapeño, fire!'},
@@ -26,5 +26,5 @@ exports.seed = function(knex) {
         {diner_id: 8, truck_id: 6, star_rating: 4, review: 'I\'m so happy for this new lunchtime option in the area! We needed some Indian food! I\'ve been here twice; once by myself and I had the butter chicken (delicious!), and the second time with my son and daughter-in-law and I had the chicken tikka masala (also delicious!). My son is vegetarian and his wife a vegan and we all found something to eat that we liked. Very flavorful, decent portions, reasonably priced, and fresh. The mango lassis are really good, too! Best of all, the people who run it are lovely and friendly and it really matters to them that you enjoy your food. They care about what they do and it shows!'},
         {diner_id: 3, truck_id: 6, star_rating: 5, review: 'Wow,Wow,Wow!!! The food and the service is impeccable! I\'m pescatarian and they have something for everyone. I\'ve had their curry shrimp, garlic naan, and vegan curry chicken. Going to try the vegan butter chicken for lunch today! I had never tried plant based chicken prior to this and it did not disappoint. The family that runs this place are so nice and engaging. The pregnant woman is always smiling and super sweet. I work a block away so will frequent this place at least 3x a week. Prices are comparable to portions but the flavors are worth much more!! A MUST try.. I highly recommend and they take Venmo'}
       ]);
-    });
+    // });
 };

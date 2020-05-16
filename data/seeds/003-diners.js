@@ -2,8 +2,8 @@ const bcrypt = require('bcryptjs');
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('diners').del()
-    .then(function () {
+  // return knex('diners').del()
+  //   .then(function () {
       // Inserts seed entries
       return knex('diners').insert([
         {name: 'Jevon Cochran', username: 'jevonc', email: 'jevon.cochran@gmail.com', password: bcrypt.hashSync('cochran',8), location: '5542 Foothill Blvd, Oakland, CA'},
@@ -15,5 +15,5 @@ exports.seed = function(knex) {
         {name: 'Nakia Woods', username: 'nakiaw', email: 'nakia.woods@gmail.com', password: bcrypt.hashSync('woods', 8), location: '3860 Martin Luther King Jr Way'},
         {name: 'Karen White', username: 'karenw', email: 'karen.white@gmail.com', password: bcrypt.hashSync('white', 8), location: '12250 Skyline Blvd, Oakland, CA'}
       ]);
-    });
+    // });
 };

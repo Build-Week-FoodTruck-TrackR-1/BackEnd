@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('menu_items').del()
-    .then(function () {
+  // return knex('menu_items').del()
+  //   .then(function () {
       // Inserts seed entries
       return knex('menu_items').insert([
         {name: 'carne asada taco', price: 2.00, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/uJ98uUzNUA1ChGJ0o0lNlg/o.jpg', category: 'entree', truck_id: 1},
@@ -47,5 +47,5 @@ exports.seed = function(knex) {
         {name: 'masala chai', price: 2.50, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/1010415_655335731174608_1823932463_n.jpg?_nc_cat=110&_nc_sid=2d5d41&_nc_eui2=AeEuknOVniJtKnC_qY8nHVAEStisuvgkMkBK2Ky6-CQyQNOlFzWC_9UP9obvJ1u9CGk&_nc_ohc=NermPkt1hGMAX96P2hJ&_nc_ht=scontent.fsdu12-1.fna&oh=dcc3ae23afdd77b7ec4f3db51cb3ee87&oe=5ED95A89', category: 'drink', truck_id: 6},
         {name: 'mango lassi', price: 5.00, image: 'https://www.cookwithmanali.com/wp-content/uploads/2014/05/Indian-Mango-Lassi-Recipe-500x500.jpg', category: 'drink', truck_id: 6},
       ]);
-    });
+    // });
 };

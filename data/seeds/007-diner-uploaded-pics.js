@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('diner_uploaded_pics').del()
-    .then(function () {
+  // return knex('diner_uploaded_pics').del()
+  //   .then(function () {
       // Inserts seed entries
       return knex('diner_uploaded_pics').insert([
         {diner_id: 1, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/8OZZ_qCYTJD9yuRxxL7Rhw/o.jpg', truck_id: 1},
@@ -35,5 +35,5 @@ exports.seed = function(knex) {
         {diner_id: 3, image: 'https://s3-media0.fl.yelpcdn.com/bphoto/3UJyEbQjvZZgFZXoLLOExQ/o.jpg', truck_id: 6},
         {diner_id: 4, image: 'https://scontent.fsdu12-1.fna.fbcdn.net/v/t1.0-9/70167112_3039617296079761_4236536988947185664_o.jpg?_nc_cat=101&_nc_sid=110474&_nc_eui2=AeGqEQy7KJYQ7PskceaA7C4NcRB9PHn2GWxxEH08efYZbBar9HSXVC7EC-QqZCcqV-o&_nc_ohc=DQoIn1XG1dkAX9cdUux&_nc_ht=scontent.fsdu12-1.fna&oh=fe2d6493df7cc5b871fe4ef187cbc308&oe=5EDA67EC', truck_id: 6}
       ]);
-    });
+    // });
 };

@@ -145,9 +145,10 @@ router.post('/:dinerId/card', (req, res) => {
     const { dinerId } = req.params;
 
     let newCard = req.body;
+    let { diner_id, num, name, exp_date, cvc, zip, customer } = newCard;
     newCard.diner_id = dinerId;
 
-    diners.addDinerCard(newCard)
+    diners.addDinerCard({ diner_id, num, name, exp_date, cvc, zip })
         .then(added => {
             res.status(201).json(added);
         })
@@ -179,7 +180,7 @@ router.post('/:dinerId/card', (req, res) => {
             } else {
             console.log(`card details: ${paymentMethod.id}, ${paymentMethod.card}`);
             stripe.setupIntents.create(
-                {payment_method_types: ['card'], customer: dinerId, payment_method: paymentMethod.id},
+                {payment_method_types: ['card'], customer: customer, payment_method: paymentMethod.id},
                 function(err, setupIntent) {
                   if(err) {
                     console.log(`Error:`, err);

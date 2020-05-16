@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  // return knex('fav_trucks').del()
-  //   .then(function () {
+  return knex('fav_trucks').del()
+    .then(function () {
       // Inserts seed entries
       return knex('fav_trucks').insert([
         {diner_id: 1, truck_id: 5},
@@ -16,5 +16,5 @@ exports.seed = function(knex) {
         {diner_id: 3, truck_id: 7},
         {diner_id: 3, truck_id: 6}
       ]);
-    // });
+    });
 };

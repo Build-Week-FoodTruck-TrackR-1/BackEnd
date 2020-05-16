@@ -48,7 +48,7 @@ router.post("/register/diners", (req, res) => {
   const hash = bcrypt.hashSync(diner.password, 8);
   diner.password = hash;
 
-  diner.stripe_id = intformat(generator.next(), 'dec');
+  diner.id = intformat(generator.next(), 'dec');
 
   if (!diner.name || !diner.username || !diner.email || !diner.password) {
     res
@@ -61,7 +61,7 @@ router.post("/register/diners", (req, res) => {
         // const token = generateToken(added);
         // req.session.loggedIn = true;
         let customer = {
-          id: added.stripe_id,
+          id: added.id,
           name: added.name,
           email: added.email,
         };
@@ -155,7 +155,6 @@ router.post("/login/diners", (req, res) => {
             username: updatedDiner.username,
             email: updatedDiner.email,
             password: updatedDiner.password,
-            stripe_id: updatedDiner.stripe_id,
             location: updatedDiner.location,
             favTrucks: updatedDiner.favTrucks,
             cardOnFile: updatedDiner.cardOnFile[0],

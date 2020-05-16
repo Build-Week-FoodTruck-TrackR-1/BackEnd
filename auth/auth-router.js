@@ -4,6 +4,9 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const FlakeIdGen = require('flake-idgen'),
+    intformat = require('biguint-format'),
+    generator = new FlakeIdGen()
 
 const operators = require("../operators/operators-model");
 const diners = require("../diners/diners-model");
@@ -45,6 +48,8 @@ router.post("/register/diners", (req, res) => {
   const hash = bcrypt.hashSync(diner.password, 8);
   diner.password = hash;
 
+  diner.stripe_id = intformat(generator.next(), 'dec');
+
   if (!diner.name || !diner.username || !diner.email || !diner.password) {
     res
       .status(400)
@@ -56,19 +61,17 @@ router.post("/register/diners", (req, res) => {
         // const token = generateToken(added);
         // req.session.loggedIn = true;
         let customer = {
-          id: added.id,
+          id: added.stripe_id,
           name: added.name,
           email: added.email,
         };
 
         stripe.customers.create(customer, function (err, customer) {
           if (err) {
-            console.log(`Stripe secret key: ${process.env.STRIPE_SECRET_KEY}`)
             console.log(`Error:`, err);
             res.status(400).json({ err });
           } else {
-            console.log(`Stripe secret key: ${process.env.STRIPE_SECRET_KEY}`)
-            res.status(201).json(added);
+            res.status(201).json(customer);
           }
         });
       })
@@ -152,6 +155,7 @@ router.post("/login/diners", (req, res) => {
             username: updatedDiner.username,
             email: updatedDiner.email,
             password: updatedDiner.password,
+            stripe_id: updatedDiner.stripe_id,
             location: updatedDiner.location,
             favTrucks: updatedDiner.favTrucks,
             cardOnFile: updatedDiner.cardOnFile[0],

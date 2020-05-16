@@ -24,6 +24,11 @@ exports.up = function(knex) {
 
             tbl
                 .string('location', 255)
+
+            tbl
+                .string('stripe_id', 255)
+                .notNullable()
+                .unique()
         })
 
         .createTable('diner_cards', tbl => {

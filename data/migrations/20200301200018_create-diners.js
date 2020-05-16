@@ -3,10 +3,7 @@ exports.up = function(knex) {
     // diners table
     return knex.schema
         .createTable('diners', tbl => {
-            tbl
-                .string('id', 255)
-                .notNullable()
-                .unique()
+            tbl.increments()
 
             tbl
                 .string('name', 255)
@@ -27,6 +24,11 @@ exports.up = function(knex) {
 
             tbl
                 .string('location', 255)
+
+            tbl
+                .string('stripe_id', 255)
+                .notNullable()
+                .unique()
         })
 
         .createTable('diner_cards', tbl => {

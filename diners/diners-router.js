@@ -8,6 +8,8 @@ const diners = require('./diners-model');
 const trucks = require('../trucks/trucks-model');
 const favorites = require('../trucks/fav-trucks-model');
 
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
 // how diners get account info
 router.get('/:id', (req, res) => {
     const { id } = req.params;
@@ -153,6 +155,49 @@ router.post('/:dinerId/card', (req, res) => {
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to add to card' });
         })
+
+    stripe.paymentMethods.create(
+        {
+            type: 'card',
+            card: {
+            number: newCard.num,
+            exp_month: `${newCard.exp_date[0]}${newCard.exp_date[1]}`,
+            exp_year: `20${newCard.exp_date[2]}${newCard.exp_date[3]}`,
+            cvc: newCard.cvc,
+            },
+            billing_details: {
+                address: {
+                    postal_code: newCard.zip
+                }
+            }
+        },
+        function(err, paymentMethod) {
+            // asynchronously called
+            if(err) {
+            console.log(`Error:`, err);
+            } else {
+            console.log(`card details: ${paymentMethod.id}, ${paymentMethod.card}`);
+            stripe.setupIntents.create(
+                {payment_method_types: ['card'], customer: dinerId, payment_method: paymentMethod.id},
+                function(err, setupIntent) {
+                  if(err) {
+                    console.log(`Error:`, err);
+                  } else {
+                    console.log(`client secret: ${setupIntent.client_secret}`);
+                  }
+                }
+            );
+            }
+        }
+    );
+
+    // stripe.setupIntents.confirm(
+    //     'seti_123456789',
+    //     {payment_method: 'pm_card_visa'},
+    //     function(err, setupIntent) {
+    //       // asynchronously called
+    //     }
+    // );
 })
 
 // how diners edit credit/debit card
@@ -184,5 +229,64 @@ router.delete('/:dinerId/card', (req, res) => {
             res.status(500).json({ errorMessage: 'unable to remove card' });
         })
 })
+
+// get diner client secret to add payment method to acct
+router.post('/:dinerId/card-wallet', async (req, res) => {
+    const { dinerId } = req.params;
+
+    // stripe.setupIntents.create(intent, function (err, intent) {
+    //     customer: Number(dinerId)
+    //     if (err) {
+    //       console.log(`Error:`, err);
+    //     } else {
+    //       console.log(`client secret: ${intent.client_secret}`);
+    //     }
+    //   });
+
+    // const intent =  await stripe.setupIntents.create({
+    //   customer: Number(dinerId)
+    // });
+    // res.render('card_wallet', { client_secret: intent.client_secret });
+
+    // stripe.paymentMethods.create(
+    //     {
+    //       type: 'card',
+    //       card: {
+    //         number: '4242424242424242',
+    //         exp_month: 5,
+    //         exp_year: 2021,
+    //         cvc: '314',
+    //       },
+    //     },
+    //     function(err, paymentMethod) {
+    //       // asynchronously called
+    //       if(err) {
+    //         console.log(`Error:`, err);
+    //       } else {
+    //         console.log(`card details: ${paymentMethod.id}, ${paymentMethod.card}`);
+
+    //       }
+    //     }
+    //   );
+
+    // stripe.setupIntents.create(
+    //     {payment_method_types: ['card'], customer: dinerId},
+    //     function(err, setupIntent) {
+    //       if(err) {
+    //         console.log(`Error:`, err);
+    //       } else {
+    //         console.log(`client secret: ${setupIntent.client_secret}`);
+    //       }
+    //     }
+    // );
+
+    // stripe.setupIntents.confirm(
+    //     'seti_123456789',
+    //     {payment_method: 'pm_card_visa'},
+    //     function(err, setupIntent) {
+    //       // asynchronously called
+    //     }
+    // );
+  });
 
 module.exports = router;

@@ -152,6 +152,7 @@ router.post('/:dinerId/card', (req, res) => {
             res.status(201).json(added);
         })
         .catch(err => {
+            console.log(newCard);
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to add to card' });
         })

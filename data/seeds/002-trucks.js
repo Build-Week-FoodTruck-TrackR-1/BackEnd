@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  // return knex('trucks').del()
-  //   .then(function () {
+  return knex('trucks').del()
+    .then(function () {
       // Inserts seed entries
       return knex('trucks').insert([
         {
@@ -97,5 +97,5 @@ exports.seed = function(knex) {
          current_location: '51st St & Telegraph Ave, Oakland, CA 94609'
         }
       ]);
-    // });
+    });
 };

@@ -55,6 +55,7 @@ router.post("/register/diners", (req, res) => {
       .then((added) => {
         // const token = generateToken(added);
         // req.session.loggedIn = true;
+        res.status(201).json(added);
         let customer = {
           id: added.id,
           name: added.name,
@@ -67,8 +68,7 @@ router.post("/register/diners", (req, res) => {
             console.log(`Error:`, err);
             res.status(400).json({ err });
           } else {
-            console.log(`Stripe secret key: ${process.env.STRIPE_SECRET_KEY}`)
-            res.status(201).json(added);
+            console.log(`success: ${customer}`)
           }
         });
       })

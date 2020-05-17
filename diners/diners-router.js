@@ -144,16 +144,14 @@ router.delete('/:dinerId/fav/:truckId', (req, res) => {
 router.post('/:dinerId/card', (req, res) => {
     const { dinerId } = req.params;
 
-    let newCard = req.body;
-    let { diner_id, num, name, exp_date, cvc, zip, customer } = newCard;
-    newCard.diner_id = dinerId;
+    let { num, name, exp_date, cvc, zip, customer } = req.body;
+    req.body.diner_id = dinerId;
 
-    diners.addDinerCard({ diner_id, num, name, exp_date, cvc, zip })
+    diners.addDinerCard({ diner_id: dinerId, num: num, name: name, exp_date: exp_date, cvc: cvc, zip: zip })
         .then(added => {
             res.status(201).json(added);
         })
         .catch(err => {
-            console.log(newCard);
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to add to card' });
         })
@@ -162,14 +160,14 @@ router.post('/:dinerId/card', (req, res) => {
         {
             type: 'card',
             card: {
-            number: newCard.num,
-            exp_month: `${newCard.exp_date[0]}${newCard.exp_date[1]}`,
-            exp_year: `20${newCard.exp_date[2]}${newCard.exp_date[3]}`,
-            cvc: newCard.cvc,
+            number: num,
+            exp_month: `${exp_date[0]}${exp_date[1]}`,
+            exp_year: `20${exp_date[2]}${exp_date[3]}`,
+            cvc: cvc,
             },
             billing_details: {
                 address: {
-                    postal_code: newCard.zip
+                    postal_code: zip
                 }
             }
         },

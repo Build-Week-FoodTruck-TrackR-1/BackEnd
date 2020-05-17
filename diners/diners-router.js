@@ -183,6 +183,18 @@ router.post('/:dinerId/card', (req, res) => {
                     console.log(`Error:`, err);
                   } else {
                     console.log(`client secret: ${setupIntent.client_secret}`);
+                    stripe.setupIntents.confirm(
+                        `${setupIntent.id}`,
+                        {payment_method: paymentMethod.id},
+                        function(err, setupIntent) {
+                          if(err) {
+                              console.log(err);
+                          }
+                          else {
+                              console.log(`setup intent confirmed: ${setupIntent}`);
+                          }
+                        }
+                    );
                   }
                 }
             );

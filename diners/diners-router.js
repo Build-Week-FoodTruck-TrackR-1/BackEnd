@@ -145,7 +145,6 @@ router.post('/:dinerId/card', (req, res) => {
     const { dinerId } = req.params;
 
     let { num, name, exp_date, cvc, zip, customer } = req.body;
-    req.body.diner_id = dinerId;
 
     diners.addDinerCard({ diner_id: dinerId, num: num, name: name, exp_date: exp_date, cvc: cvc, zip: zip })
         .then(added => {

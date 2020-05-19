@@ -36,7 +36,7 @@ const sessionConfig = {
 
 const corsOptions = {
   origin: [
-    "http://localhost:3000/",
+    "http://localhost:3000",
     "https://confident-volhard-97d9a3.netlify.com/",
     "https://m.stripe.network",
     "https://m.stripe.com",

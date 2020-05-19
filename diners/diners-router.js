@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const diners = require('./diners-model');
 const trucks = require('../trucks/trucks-model');
 const favorites = require('../trucks/fav-trucks-model');
+const orders = require('../orders/orders-model');
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -241,63 +242,34 @@ router.delete('/:dinerId/card', (req, res) => {
         })
 })
 
-// get diner client secret to add payment method to acct
-router.post('/:dinerId/card-wallet', async (req, res) => {
+// diner confirms order
+// adds new order to orders table
+router.post('/:dinerId/confirm-order', (req, res) => {
     const { dinerId } = req.params;
+    let order = req.body;
+    order.diner_id = dinerId;
 
-    // stripe.setupIntents.create(intent, function (err, intent) {
-    //     customer: Number(dinerId)
-    //     if (err) {
-    //       console.log(`Error:`, err);
-    //     } else {
-    //       console.log(`client secret: ${intent.client_secret}`);
-    //     }
-    //   });
+    orders.addOrder(order)
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to confirm order' })
+        })
+    
+    entries.map(entry => {
+        orders.addToOrderDetails(entry)
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to confirm order' })
+        })
+    })
+})
 
-    // const intent =  await stripe.setupIntents.create({
-    //   customer: Number(dinerId)
-    // });
-    // res.render('card_wallet', { client_secret: intent.client_secret });
-
-    // stripe.paymentMethods.create(
-    //     {
-    //       type: 'card',
-    //       card: {
-    //         number: '4242424242424242',
-    //         exp_month: 5,
-    //         exp_year: 2021,
-    //         cvc: '314',
-    //       },
-    //     },
-    //     function(err, paymentMethod) {
-    //       // asynchronously called
-    //       if(err) {
-    //         console.log(`Error:`, err);
-    //       } else {
-    //         console.log(`card details: ${paymentMethod.id}, ${paymentMethod.card}`);
-
-    //       }
-    //     }
-    //   );
-
-    // stripe.setupIntents.create(
-    //     {payment_method_types: ['card'], customer: dinerId},
-    //     function(err, setupIntent) {
-    //       if(err) {
-    //         console.log(`Error:`, err);
-    //       } else {
-    //         console.log(`client secret: ${setupIntent.client_secret}`);
-    //       }
-    //     }
-    // );
-
-    // stripe.setupIntents.confirm(
-    //     'seti_123456789',
-    //     {payment_method: 'pm_card_visa'},
-    //     function(err, setupIntent) {
-    //       // asynchronously called
-    //     }
-    // );
-  });
+router.post('/:diner/')
 
 module.exports = router;

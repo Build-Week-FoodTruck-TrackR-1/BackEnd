@@ -270,6 +270,4 @@ router.post('/:dinerId/confirm-order', (req, res) => {
     })
 })
 
-router.post('/:diner/')
-
 module.exports = router;

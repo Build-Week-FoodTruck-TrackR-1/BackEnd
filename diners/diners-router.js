@@ -247,27 +247,42 @@ router.delete('/:dinerId/card', (req, res) => {
 router.post('/:dinerId/confirm-order', (req, res) => {
     const { dinerId } = req.params;
     let order = req.body;
-    order.diner_id = dinerId;
+    // order.diner_id = dinerId;
+    let { date, time, truck_id, subtotal, tip, total } = order;
 
-    orders.addOrder(order)
-        .then(added => {
-            res.status(201).json(added);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ errorMessage: 'unable to confirm order' })
-        })
-    
-    entries.map(entry => {
-        orders.addToOrderDetails(entry)
-        .then(added => {
-            res.status(201).json(added);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ errorMessage: 'unable to confirm order' })
-        })
+    orders.addOrder({
+        date: date,
+        time: time,
+        diner_id: dinerId,
+        truck_id: truck_id,
+        subtotal: subtotal,
+        tip: tip, 
+        total: total
     })
+        .then(added => {
+            res.status(201).json(added);
+            order.breakdown.map(entry => {
+                orders.addToOrderDetails({
+                    order_id: added.id,
+                    item_id: entry.item_id,
+                    item: entry.item,
+                    quantity: entry.count,
+                    diner_id: dinerId,
+                    truck_id: truck_id
+                })
+                .then(added => {
+                    res.status(201).json(added);
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json({ errorMessage: 'unable to confirm order' })
+                })
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: 'unable to confirm order' })
+        })
 })
 
 module.exports = router;

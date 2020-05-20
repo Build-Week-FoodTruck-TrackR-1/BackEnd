@@ -260,7 +260,7 @@ router.post('/:dinerId/confirm-order', (req, res) => {
         total: total
     })
         .then(added => {
-            res.status(201).json(added);
+            // res.status(201).json(added);
             breakdown.map(entry => {
                 orders.addToOrderDetails({
                     order_id: added.id,
@@ -270,29 +270,30 @@ router.post('/:dinerId/confirm-order', (req, res) => {
                     diner_id: dinerId,
                     truck_id: truck_id
                 })
-                .then(added => {
-                    res.status(201).json(added);
-                    stripe.paymentIntents.create(
-                        {
-                          amount: total * 100,
-                          currency: 'usd',
-                          payment_method_types: ['card'],
-                          customer: stripeId
-                        },
-                        function(err, paymentIntent) {
-                          if(err) {
-                              console.log(err)
-                          } else {
-                              console.log(`status: ${paymentIntent.status}`)
-                          }
-                        }
-                      );
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.status(500).json({ errorMessage: 'unable to confirm order' })
-                })
+                // .then(added => {
+                //     // res.status(201).json(added);
+                // })
+                // .catch(err => {
+                //     console.log(err);
+                //     res.status(500).json({ errorMessage: 'unable to confirm order' })
+                // })
             })
+            stripe.paymentIntents.create(
+                {
+                  amount: total * 100,
+                  currency: 'usd',
+                  payment_method_types: ['card'],
+                  customer: stripeId
+                },
+                function(err, paymentIntent) {
+                  if(err) {
+                      console.log(err)
+                  } else {
+                      console.log(`status: ${paymentIntent.status}`)
+                      res.status(201).json(added);
+                  }
+                }
+              );
         })
         .catch(err => {
             console.log(err);

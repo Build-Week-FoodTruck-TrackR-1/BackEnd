@@ -264,7 +264,7 @@ router.post('/:dinerId/confirm-order', (req, res) => {
             breakdown.map(entry => {
                 orders.addToOrderDetails({
                     order_id: added.id,
-                    item_id: entry.item_id,
+                    item_id: entry.id,
                     item: entry.item,
                     quantity: entry.count,
                     diner_id: dinerId,

@@ -2,7 +2,8 @@ const db = require('../data/dbConfig');
 
 module.exports = {
     addOrder,
-    findOrderById
+    findOrderById,
+    getDetailsByOrderId
 }
 
 function addOrder(order) {
@@ -30,4 +31,10 @@ function addToOrderDetails(entry) {
                 .join('orders as ord', 'ord.id', 'od.order_id')
                 .where({'od.order_id': entry.orderId})
         })
+}
+
+function getDetailsByOrderId(id) {
+    return db('order_details as od')
+        .select('od.item_id', 'od.item', 'od.quantity', 'od.diner_id', 'od.truck_id')
+        .where({ order_id: id })
 }

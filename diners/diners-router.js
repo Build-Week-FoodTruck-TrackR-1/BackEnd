@@ -248,7 +248,7 @@ router.post('/:dinerId/confirm-order', (req, res) => {
     const { dinerId } = req.params;
     let order = req.body;
     // order.diner_id = dinerId;
-    let { date, time, truck_id, subtotal, tip, total } = order;
+    let { stripeId, date, time, truck_id, breakdown, subtotal, tip, total } = order;
 
     orders.addOrder({
         date: date,
@@ -261,7 +261,7 @@ router.post('/:dinerId/confirm-order', (req, res) => {
     })
         .then(added => {
             res.status(201).json(added);
-            order.breakdown.map(entry => {
+            breakdown.map(entry => {
                 orders.addToOrderDetails({
                     order_id: added.id,
                     item_id: entry.item_id,
@@ -272,6 +272,21 @@ router.post('/:dinerId/confirm-order', (req, res) => {
                 })
                 .then(added => {
                     res.status(201).json(added);
+                    stripe.paymentIntents.create(
+                        {
+                          amount: total * 100,
+                          currency: 'usd',
+                          payment_method_types: ['card'],
+                          customer: stripeId
+                        },
+                        function(err, paymentIntent) {
+                          if(err) {
+                              console.log(err)
+                          } else {
+                              console.log(`status: ${paymentIntent.status}`)
+                          }
+                        }
+                      );
                 })
                 .catch(err => {
                     console.log(err);

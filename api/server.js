@@ -12,6 +12,7 @@ const dinerRouter = require("../diners/diners-router");
 const truckRouter = require("../trucks/trucks-router");
 const accountRouter = require("../accounts/accounts-router");
 const stripeRouter = require("../stripe/stripe-router");
+const orderRouter = require("../orders/orders-router");
 
 const server = express();
 
@@ -78,5 +79,6 @@ server.use("/api/trucks", restricted, truckRouter);
 server.use("/api/diner", restricted, dinerRouter);
 server.use("/api/accounts", accountRouter);
 // server.use('/api/stripe', stripeRouter);
+server.use("/api/orders", orderRouter);
 
 module.exports = server;

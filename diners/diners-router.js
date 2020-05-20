@@ -247,7 +247,7 @@ router.delete('/:dinerId/card', (req, res) => {
 router.post('/:dinerId/confirm-order', (req, res) => {
     const { dinerId } = req.params;
     let order = req.body;
-    // order.diner_id = dinerId;
+    order.diner_id = dinerId;
     let { stripeId, date, time, truck_id, subtotal, tip, total } = order;
 
     orders.addOrder({

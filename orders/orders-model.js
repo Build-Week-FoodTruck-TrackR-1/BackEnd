@@ -3,7 +3,8 @@ const db = require('../data/dbConfig');
 module.exports = {
     addOrder,
     findOrderById,
-    getDetailsByOrderId
+    getDetailsByOrderId,
+    addToOrderDetails
 }
 
 function addOrder(order) {
@@ -29,7 +30,7 @@ function addToOrderDetails(entry) {
             return db('order_details as od')
                 .select('od.item', 'od.quantity')
                 .join('orders as ord', 'ord.id', 'od.order_id')
-                .where({'od.order_id': entry.orderId})
+                .where({'od.order_id': entry.order_id})
         })
 }
 

@@ -149,59 +149,59 @@ router.post('/:dinerId/card', (req, res) => {
 
     diners.addDinerCard({ diner_id: dinerId, num: num, name: name, exp_date: exp_date, cvc: cvc, zip: zip })
         .then(added => {
-            res.status(201).json(added);
+            // res.status(201).json(added);
+            stripe.paymentMethods.create(
+                {
+                    type: 'card',
+                    card: {
+                    number: num,
+                    exp_month: `${exp_date[0]}${exp_date[1]}`,
+                    exp_year: `20${exp_date[2]}${exp_date[3]}`,
+                    cvc: cvc,
+                    },
+                    billing_details: {
+                        address: {
+                            postal_code: zip
+                        }
+                    }
+                },
+                function(err, paymentMethod) {
+                    // asynchronously called
+                    if(err) {
+                    console.log(`Error:`, err);
+                    } else {
+                    console.log(`card details: ${paymentMethod.id}, ${paymentMethod.card}`);
+                    stripe.setupIntents.create(
+                        {payment_method_types: ['card'], customer: customer, payment_method: paymentMethod.id},
+                        function(err, setupIntent) {
+                          if(err) {
+                            console.log(`Error:`, err);
+                          } else {
+                            console.log(`client secret: ${setupIntent.client_secret}`);
+                            stripe.setupIntents.confirm(
+                                `${setupIntent.id}`,
+                                {payment_method: paymentMethod.id},
+                                function(err, setupIntent) {
+                                  if(err) {
+                                      console.log(err);
+                                  }
+                                  else {
+                                    res.status(201).json(setupIntent.payment_method);
+                                    console.log(`setup intent confirmed: ${setupIntent}`);
+                                  }
+                                }
+                            );
+                          }
+                        }
+                    );
+                    }
+                }
+            );
         })
         .catch(err => {
             console.log(err);
             res.status(500).json({ errorMessage: 'unable to add to card' });
         })
-
-    stripe.paymentMethods.create(
-        {
-            type: 'card',
-            card: {
-            number: num,
-            exp_month: `${exp_date[0]}${exp_date[1]}`,
-            exp_year: `20${exp_date[2]}${exp_date[3]}`,
-            cvc: cvc,
-            },
-            billing_details: {
-                address: {
-                    postal_code: zip
-                }
-            }
-        },
-        function(err, paymentMethod) {
-            // asynchronously called
-            if(err) {
-            console.log(`Error:`, err);
-            } else {
-            console.log(`card details: ${paymentMethod.id}, ${paymentMethod.card}`);
-            stripe.setupIntents.create(
-                {payment_method_types: ['card'], customer: customer, payment_method: paymentMethod.id},
-                function(err, setupIntent) {
-                  if(err) {
-                    console.log(`Error:`, err);
-                  } else {
-                    console.log(`client secret: ${setupIntent.client_secret}`);
-                    stripe.setupIntents.confirm(
-                        `${setupIntent.id}`,
-                        {payment_method: paymentMethod.id},
-                        function(err, setupIntent) {
-                          if(err) {
-                              console.log(err);
-                          }
-                          else {
-                              console.log(`setup intent confirmed: ${setupIntent}`);
-                          }
-                        }
-                    );
-                  }
-                }
-            );
-            }
-        }
-    );
 
     // stripe.setupIntents.confirm(
     //     'seti_123456789',
@@ -247,13 +247,13 @@ router.delete('/:dinerId/card', (req, res) => {
 router.post('/:dinerId/confirm-order', (req, res) => {
     const { dinerId } = req.params;
     let order = req.body;
-    order.diner_id = dinerId;
-    let { stripeId, date, time, truck_id, subtotal, tip, total } = order;
+    // order.diner_id = dinerId;
+    let { stripeId, payment, date, time, truck_id, subtotal, tip, total } = order;
 
     orders.addOrder({
         date: date,
         time: time,
-        diner_id: dinerId,
+        diner_id: Number(dinerId),
         truck_id: truck_id,
         subtotal: subtotal,
         tip: tip, 
@@ -282,15 +282,19 @@ router.post('/:dinerId/confirm-order', (req, res) => {
                 {
                   amount: total * 100,
                   currency: 'usd',
-                  payment_method_types: ['card'],
-                  customer: stripeId
+                  customer: stripeId,
+                  confirm: true,
+                  payment_method: payment
                 },
                 function(err, paymentIntent) {
                   if(err) {
                       console.log(err)
                   } else {
                       console.log(`status: ${paymentIntent.status}`)
-                      res.status(201).json(added);
+                      res.status(201).json({
+                          order: added,
+                          status: paymentIntent.status
+                        });
                   }
                 }
               );

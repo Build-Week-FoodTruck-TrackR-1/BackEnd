@@ -1,4 +1,6 @@
+// const path = require('path');
 const express = require("express");
+// const dir = path.join(__dirname, 'assets')
 const session = require("express-session");
 const CSK = require("connect-session-knex")(session);
 const cors = require("cors");
@@ -72,6 +74,7 @@ server.get("/", (req, res) => {
 server.use(helmet());
 server.use(express.json());
 server.use(session(sessionConfig));
+// server.use(express.static(dir));
 
 server.use("/api/auth", authRouter);
 server.use("/api/operator", restricted, operatorRouter);

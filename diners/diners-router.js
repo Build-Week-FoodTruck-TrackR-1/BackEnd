@@ -52,7 +52,6 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
     const { id } = req.params;
     let updatedDiner = req.body;
-    updatedDiner.id = id;
     const hash = bcrypt.hashSync(updatedDiner.password, 8);
     updatedDiner.password = hash;
 
@@ -83,9 +82,9 @@ router.delete('/:id', (req, res) => {
 // how diners change location
 router.patch('/:id', (req, res) => {
     const { id } = req.params;
-    let updatedlocation = req.body;
+    let updatedDiner = req.body;
 
-    diners.editDinerLocation(updatedlocation, id)
+    diners.editDiner(updatedDiner, id)
         .then(updated => {
             res.status(200).json(updated);
         })

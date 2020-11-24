@@ -7,7 +7,8 @@ module.exports = {
     findAllDiners,
     editDiner,
     deleteDiner,
-    editDinerLocation,
+    // took this one out bc this func can be used to edit more than just location
+    // editDinerLocation,
     getDinerCard,
     addDinerCard,
     editDinerCard,
@@ -41,14 +42,14 @@ function findAllDiners() {
         .select('d.id', 'd.name', 'd.username', 'd.email', 'd.password', 'd.location', 'd.stripe_id')
 }
 
-function editDiner(changes, id) {
-    return db('diners')
-        .where({ id })
-        .update(changes)
-        .then(id => {
-            return findDinerById(id)
-        })
-}
+// function editDiner(changes, id) {
+//     return db('diners')
+//         .where({ id })
+//         .update(changes)
+//         .then(id => {
+//             return findDinerById(id)
+//         })
+// }
 
 function deleteDiner(id) {
     return db('diners')
@@ -56,7 +57,7 @@ function deleteDiner(id) {
         .del()
 }
 
-function editDinerLocation(changes, id) {
+function editDiner(changes, id) {
     return db('diners')
         .where({ id })
         .update(changes)

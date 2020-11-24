@@ -1,3 +1,5 @@
+const tacos = '/assets/tacos_el_gordo.jpg';
+
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('trucks').del()

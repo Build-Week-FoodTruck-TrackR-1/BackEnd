@@ -19,7 +19,16 @@ exports.up = function(knex) {
                 .notNullable()
                 .unique()
             
-            tbl.string('password', 255)
+            tbl
+                .string('password', 255)
+                .notNullable()
+
+            tbl
+                .string('country', 255)
+                .notNullable()
+
+            tbl
+                .string('language', 255)
                 .notNullable()
 
             tbl

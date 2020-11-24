@@ -152,10 +152,13 @@ router.post("/login/diners", (req, res) => {
           message: `Welcome ${diner.username}`,
           account: {
             id: updatedDiner.id,
+            name: updatedDiner.name,
             username: updatedDiner.username,
             email: updatedDiner.email,
             password: updatedDiner.password,
             stripe_id: updatedDiner.stripe_id,
+            country: updatedDiner.country,
+            language: updatedDiner.language,
             location: updatedDiner.location,
             favTrucks: updatedDiner.favTrucks,
             cardOnFile: updatedDiner.cardOnFile[0],

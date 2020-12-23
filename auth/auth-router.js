@@ -156,6 +156,7 @@ router.post("/login/diners", (req, res) => {
             username: updatedDiner.username,
             email: updatedDiner.email,
             password: updatedDiner.password,
+            profile_pic: updatedDiner.profile_pic,
             stripe_id: updatedDiner.stripe_id,
             country: updatedDiner.country,
             language: updatedDiner.language,

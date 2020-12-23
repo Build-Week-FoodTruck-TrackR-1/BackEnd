@@ -79,7 +79,7 @@ router.delete('/:id', (req, res) => {
         })
 })
 
-// how diners change location
+// how diners update info
 router.patch('/:id', (req, res) => {
     const { id } = req.params;
     let updatedDiner = req.body;

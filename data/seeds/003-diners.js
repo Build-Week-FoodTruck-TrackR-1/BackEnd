@@ -9,7 +9,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('diners').insert([
-        {name: 'Jevon Cochran', username: 'jevonc', email: 'jevon.cochran@gmail.com', password: bcrypt.hashSync('cochran',8), country: 'United States', language: 'English', location: '5542 Foothill Blvd, Oakland, CA', stripe_id: intformat(generator.next(), 'dec')},
+        {name: 'Jevon Cochran', username: 'jevonc', email: 'jevon.cochran@gmail.com', password: bcrypt.hashSync('cochran',8), profile_pic: 'https://firebasestorage.googleapis.com/v0/b/food-truck-trackr-files.appspot.com/o/diner-profile-pics%2FIMG_5269.jpg?alt=media&token=7de13bae-a813-477a-8676-b8b851d36c71', country: 'United States', language: 'English', location: '5542 Foothill Blvd, Oakland, CA', stripe_id: intformat(generator.next(), 'dec')},
         {name: 'Kianna Pinkney', username: 'kiannap', email: 'kpinkney@gmail.com', password: bcrypt.hashSync('pinkney',8), country: 'United States', language: 'English', location: '1322 Campbell St, Oakland, CA', stripe_id: intformat(generator.next(), 'dec')},
         {name: 'Leroy Gatlin', username: 'leroyg', email: 'leroy.gatlin@gmail.com', password: bcrypt.hashSync('gatlin',8), country: 'United States', language: 'English', location: '7220 Krause Ave, Oakland, CA ', stripe_id: intformat(generator.next(), 'dec')},
         {name: 'Shun Chiang', username: 'shunc', email: 'shun.chiang@gmail.com', password: bcrypt.hashSync('chiang', 8), country: 'United States', language: 'English', location: '3268 San Pablo Ave, Oakland, CA', stripe_id: intformat(generator.next(), 'dec')},

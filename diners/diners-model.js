@@ -32,7 +32,7 @@ function findDinerBy(filter) {
 
 function findDinerById(id) {
     return db('diners')
-        .select('id', 'name', 'username', 'email', 'password', 'location', 'stripe_id')
+        .select('*')
         .where({ id })
         .first()
 }

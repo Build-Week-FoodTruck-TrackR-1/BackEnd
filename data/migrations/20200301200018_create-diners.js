@@ -24,6 +24,9 @@ exports.up = function(knex) {
                 .notNullable()
 
             tbl
+                .string('profile_pic', 500)
+
+            tbl
                 .string('country', 255)
                 .notNullable()
 

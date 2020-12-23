@@ -105,12 +105,12 @@ router.get('/:operatorId/trucks', (req, res) => {
 })
 
 // how operators edit truck
-router.put('/:operatorId/truck/:truckId', (req, res) => {
+router.patch('/:operatorId/truck/:truckId', (req, res) => {
     console.log('this is running');
     const { operatorId, truckId } = req.params;
     let updatedTruck = req.body;
-    updatedTruck.operator_id = operatorId;
-    updatedTruck.id = truckId;
+    // updatedTruck.operator_id = operatorId;
+    // updatedTruck.id = truckId;
 
     trucks.editTruck(updatedTruck, truckId)
         .then(updated => {
